@@ -1,0 +1,36 @@
+{
+  "name": "basic-helper",
+  "version": "1.2.3",
+  "description": "",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepublish": "npm run build:babel",
+    "build:babel": "NODE_ENV=production babel ./src --out-dir ./dist --ignore spec.js",
+    "push": "npm publish && git add -A && git commit -m 'update' && git push origin master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SANGET/basic-helper-js.git"
+  },
+  "author": "sanget",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SANGET/basic-helper-js/issues"
+  },
+  "homepage": "https://github.com/SANGET/basic-helper-js#readme",
+  "babel": {
+    "env": {
+      "production": {
+        "presets": [
+          "env"
+        ]
+      }
+    }
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1"
+  }
+}

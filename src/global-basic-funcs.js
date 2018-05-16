@@ -6,8 +6,10 @@
 import numTransformToCN from './num-to-cn';
 import {getDefaultDateInfo, dateFormat, timeFormat} from './datetime-helper';
 
-let floatLen = 4;
-let basicUnit = window.BASIC_UNIT || 10000;
+let basicFloatLen = 4;
+let floatLen = basicFloatLen;
+let basicUnit = 10000;
+let runingBasicUnit = basicUnit;
 
 export function getFloatLen() {
   return floatLen;
@@ -20,7 +22,11 @@ export function setFloatLen(len) {
 }
 
 export function setBasicUnit(val) {
-  basicUnit = val;
+  runingBasicUnit = val;
+}
+
+export function getBasicUnit(val) {
+  return runingBasicUnit;
 }
 
 export function toFixed(currNumb, limit = floatLen, isStr = false) {
@@ -52,6 +58,12 @@ export function moneyFormat(money, logMark = floatLen, _basicUnit = basicUnit) {
   let result = formoted.reverse().join('');
   if (!!moneyFloor) result += '.' + moneyFloor;
   return isNegNum ? '-' + result : result;
+}
+
+export function toBasicUnitMoney(money) {
+  money = +money;
+  if (typeof money !== 'number') return money || '';
+  return toFixed(money * runingBasicUnit, basicFloatLen);
 }
 
 export function toggleBasicFloatLen() {
@@ -88,24 +100,6 @@ export function generteID() {
   const originID = (Date.now() + '' + (Math.floor(Math.random() * (max - min + 1) + min)));
   let newID = originID.split('').reverse();
   let result = newID.slice(0, idLen).join('');
-  return result;
-}
-
-export function getDisplayRate(rate) {
-  let result = +(rate / 10).toFixed(1) || 0;
-  if (result < 0) result = 0;
-  return result + '%';
-}
-
-export function getDisplayRateNumber(rate, basicAwardGroup = 1800) {
-  let result = +(rate / 1000) * 2000 + basicAwardGroup;
-  if (result < 0) result = 0;
-  return result;
-}
-
-export function rateNumberToRate(rateNumb, basicAwardGroup = 1800) {
-  let result = (rateNumb - basicAwardGroup) / 2;
-  if (result < 0) result = 0;
   return result;
 }
 
@@ -263,12 +257,12 @@ export class EventEmitterClass {
   }
 }
 
-String.prototype.Mosaics = function(unseelen = 3) {
+String.prototype.Mosaics = function(unseelen = 3, mark = '*') {
   let str = this;
   unseelen = str.length - unseelen;
   let result = '';
   str.split('').map((str, idx) => {
-    let _str = idx < unseelen ? '*' : str;
+    let _str = idx < unseelen ? mark : str;
     result += _str;
   }).join('');
   return result;
@@ -349,6 +343,7 @@ export let GlobalHelper = {
   GenerateNumberRange: generateNumberRange,
   UnitFormat: unitFormat,
   MoneyFormat: moneyFormat,
+  ToBasicUnitMoney: toBasicUnitMoney,
   StripScript: stripScript,
   IsPhoneNumber: isPhoneNumber,
   IsEmail: isEmail,
@@ -358,9 +353,6 @@ export let GlobalHelper = {
   IsObj: isObj,
   CallFunc: callFunc,
   GenerteID: generteID,
-  GetDisplayRate: getDisplayRate,
-  GetDisplayRateNumber: getDisplayRateNumber,
-  RateNumberToRate: rateNumberToRate,
   Random: random,
   BoolFilter: boolFilter,
   RemoveArrayItem: removeArrayItem,

@@ -10,3 +10,11 @@
 ### v1.2.*
 
 1. 提供 defineGlobalObj 接口, 用于注册挂载在 window 中的作用域
+
+### v1.3.*
+
+删除几个业务相关的 API
+
+- GetDisplayRate
+- GetDisplayRateNumber
+- RateNumberToRate

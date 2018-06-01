@@ -1,15 +1,14 @@
 {
   "name": "basic-helper",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "",
-  "main": "dist/index.js",
-  "files": [
-    "dist"
-  ],
   "scripts": {
-    "prepublish": "npm run build:babel",
-    "build:babel": "NODE_ENV=production babel ./src --out-dir ./dist --ignore spec.js",
-    "push": "npm publish && git add -A && git commit -m 'update' && git push origin master"
+    "publish": "npm publish ./build",
+    "release": "npm run build; npm run publish",
+    "build": "rm -rf ./build/; npm run build:babel; npm run build:copy-files",
+    "build:babel": "NODE_ENV=production babel ./src --out-dir ./build --ignore spec.js",
+    "build:copy-files": "NODE_ENV=production babel-node ./scripts/copy-files.js",
+    "push": "npm publish; git add -A; git commit -m 'update'; git push origin master"
   },
   "repository": {
     "type": "git",
@@ -29,8 +28,5 @@
         ]
       }
     }
-  },
-  "devDependencies": {
-    "babel-preset-env": "^1.6.1"
   }
 }

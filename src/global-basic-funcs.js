@@ -3,15 +3,11 @@
  * 注册全局可用的基础的 Helper 方法
  */
 
-import numTransformToCN from './num-to-cn';
-import {getDefaultDateInfo, dateFormat, timeFormat} from './datetime-helper';
+import NumTransformToCN from './num-to-cn';
+import {GetDefaultDateInfo, DateFormat, TimeFormat} from './datetime-helper';
 import EventEmitterClass from './event-emitter';
 import * as GlobabHelper from './basic';
 import DebounceClass from './debounce';
-
-export function registeGlobalHelper(val) {
-  Object.assign(GlobalHelper, val);
-}
 
 export const EventEmitter = new EventEmitterClass();
 
@@ -19,22 +15,26 @@ export const EventEmitter = new EventEmitterClass();
 * 注册一个 $GH 的全局对象 (Global Helper)
 */
 export let GlobalHelper = Object.assign({}, GlobabHelper, {
-  GetDefaultDateInfo: getDefaultDateInfo,
-  NumTransformToCN: numTransformToCN,
-  TimeFormat: timeFormat,
-  DateFormat: dateFormat,
+  GetDefaultDateInfo,
+  TimeFormat,
+  DateFormat,
+  NumTransformToCN,
   Debounce: DebounceClass,
-  RegisteGlobalHelper: registeGlobalHelper,
   EventEmitterClass: EventEmitterClass,
   EventEmitter: EventEmitter,
 });
 
 export {
   EventEmitterClass, DebounceClass,
+  GetDefaultDateInfo, DateFormat, TimeFormat,
+  NumTransformToCN
 }
 
 let GlobalObjectMapper = {};
 export function defineGlobalObj(name, obj) {
+  return console.warn('defineGlobalScope has been rename to defineGlobalScope');
+}
+export function defineGlobalScope(name, obj) {
   let nameMark = `__IsSet${name}`;
   if(window[nameMark]) return;
   GlobalObjectMapper[name] = obj;
@@ -59,4 +59,4 @@ export function defineGlobalObj(name, obj) {
     }
   });
 }
-defineGlobalObj('$GH', GlobalHelper);
+defineGlobalScope('$GH', GlobalHelper);

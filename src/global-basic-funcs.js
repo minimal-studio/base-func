@@ -32,7 +32,7 @@ export {
 
 let GlobalObjectMapper = {};
 export function defineGlobalObj(name, obj) {
-  return console.warn('defineGlobalScope has been rename to defineGlobalScope');
+  return console.warn('defineGlobalObj has been rename to defineGlobalScope');
 }
 export function defineGlobalScope(name, obj) {
   let nameMark = `__IsSet${name}`;

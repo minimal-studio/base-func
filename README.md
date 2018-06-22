@@ -1,33 +1,46 @@
 ## Basic Helper
-#### 全局基础函数
+#### 提供基础的数据处理函数，简单方便
 
-## update logs
+### 概念
 
----------
+作用域 scope
 
-### v1.3.*
+使用了 *作用域* 的概念，通过 *defineGlobalScope* 方法实现，并且已定义的作用域不能任意改变
+作用域挂载在 window 或者 global 下，作用于命名建议使用 *$* 前缀，并且全大写
 
-- defineGlobalObj 更名为 defineGlobalScope
+```js
+import {defineGlobalScope} from 'basic-helper';
 
----------
+const GlobalObj = {
+  test: () => {
+    console.log('test')
+  }
+};
 
-### v1.2.4
+defineGlobalScope('$SCOPE', GlobalObj);
 
-删除几个业务相关的 API
+$SCOPE.test(); // 输出 test
 
-- GetDisplayRate
-- GetDisplayRateNumber
-- RateNumberToRate
+$SCOPE.test = () => {
+  console.log('change test');
+}
+$SCOPE.name = 'name'; // 设置无效
 
----------
+$SCOPE.test(); // 还是输出 test，上面的更改无效
+```
 
-### v1.2.*
+定义后便可以使用 $SCOPE 进行操作，并且提供 *registe* 方法更改作用域中的值
 
-1. 提供 defineGlobalObj 接口, 用于注册挂载在 window 中的作用域
+```js
+// 修改方式， 确保作用域的正确
+$SCOPE.registe({
+  test: () => {
+    console.log('change test 3th')
+  },
+  name: 'name'
+});
+```
 
----------
+### 用法
 
-### v1.1.*
-
-1. 修改全局方法的命名规则，只设置一个全局的 $GH 对象，里面挂靠对应的方法
-2. 提供一个 $GH.registe(newVal) API, 可以向 $GH 对象注册对应的内容
+basic-helper 提供了一组通用的，基础的数据处理函数，详情参考 basic.js

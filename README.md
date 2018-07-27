@@ -1,7 +1,8 @@
-## Basic Helper
-#### 提供基础的数据处理函数，简单方便
+# Basic Helper
 
-### 概念
+提供基础的数据处理函数，简单方便
+
+## 概念
 
 作用域 scope
 
@@ -41,6 +42,6 @@ $SCOPE.registe({
 });
 ```
 
-### 用法
+## 用法
 
 basic-helper 提供了一组通用的，基础的数据处理函数，详情参考 basic.js

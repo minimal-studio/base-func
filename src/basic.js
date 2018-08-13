@@ -163,12 +163,12 @@ export function DateParseHook(dateStringInRange) {
   return date;
 }
 
-function isEmail(val) {
+export function IsEmail(val) {
   let mail_reg = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
   return mail_reg.test(val);
 
 }
-function isPhoneNumber(val) {
+export function IsPhoneNumber(val) {
   let phone_reg = /^1[3|4|5|7|8][0-9]{9}$/;
   return phone_reg.test(val);
 }

@@ -36,7 +36,7 @@ export function defineGlobalObj(name, obj) {
 }
 export function defineGlobalScope(name, obj) {
   let nameMark = `__IsSet${name}`;
-  if(window[nameMark]) return;
+  if(!window || window[nameMark]) return;
   GlobalObjectMapper[name] = obj;
   let finalObj = Object.assign(GlobalObjectMapper[name], {
     registe: registeObj => {

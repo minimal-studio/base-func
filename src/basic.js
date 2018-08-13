@@ -196,7 +196,21 @@ Array.prototype.deduplication = function() {
   return Object.keys(deduplicationObj);
 }
 
-if(window.localStorage) {
+export function WrapNumbPrefix(numb, isNeedPrefix = false) {
+  let _numb = +(numb);
+  return (isNeedPrefix && _numb < 10) ? `0${_numb}` : _numb + '';
+}
+
+export function GenerateNumberRange(numberRange) {
+  let isNeedPrefix = numberRange[1] >= 10;
+  let numberRangeArr = [];
+  for (let _offset = numberRange[0]; _offset <= numberRange[1]; _offset++) {
+    numberRangeArr.push(WrapNumbPrefix(_offset, isNeedPrefix));
+  }
+  return numberRangeArr;
+}
+
+if(!!window && window.localStorage) {
   /**
    * localStorage 的兼容接口，与 React Native 的 AyncStoage 的相同
    */
@@ -222,18 +236,4 @@ if(window.localStorage) {
   window.Storage.removeItem = function(itemName) {
     localStorage.removeItem(itemName);
   }
-}
-
-export function WrapNumbPrefix(numb, isNeedPrefix = false) {
-  let _numb = +(numb);
-  return (isNeedPrefix && _numb < 10) ? `0${_numb}` : _numb + '';
-}
-
-export function GenerateNumberRange(numberRange) {
-  let isNeedPrefix = numberRange[1] >= 10;
-  let numberRangeArr = [];
-  for (let _offset = numberRange[0]; _offset <= numberRange[1]; _offset++) {
-    numberRangeArr.push(WrapNumbPrefix(_offset, isNeedPrefix));
-  }
-  return numberRangeArr;
 }

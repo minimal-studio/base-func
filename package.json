@@ -19,14 +19,5 @@
   "bugs": {
     "url": "https://github.com/SANGET/basic-helper-js/issues"
   },
-  "homepage": "https://github.com/SANGET/basic-helper-js#readme",
-  "babel": {
-    "env": {
-      "production": {
-        "presets": [
-          "env"
-        ]
-      }
-    }
-  }
+  "homepage": "https://github.com/SANGET/basic-helper-js#readme"
 }

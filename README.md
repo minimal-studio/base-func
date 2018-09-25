@@ -1,6 +1,6 @@
 # Basic Helper
 
-提供一些基础的、通用的数据处理辅助函数
+类似 Lodash 的语义化辅助函数，提供一些基础的、通用的数据处理等方法，提供定义全局作用域的方法
 
 引入即可获取内置的 $GH 函数，所有的内置函数都挂在在 $GH 对象下
 
@@ -9,6 +9,41 @@
 - 常用的判断函数，例如 IsFunc, IsObj, IsPhone 等
 - 保持浏览器端的 localStorage 与 React Native 的 AyncStoage 兼容的 window.Storage 接口
 - 提供定义全局作用域的方式
+
+## 订阅发布 EventEmitter
+
+```js
+import { EventEmitter, EventEmitterClass } from 'basic-helper';
+// EventEmitter 为内置的对象
+// 可以重新构造一个
+const eventEmitter = new EventEmitterClass();
+
+// 简写 Alias
+eventEmitter.on('event', callback) === eventEmitter.subscribe('event', callback)
+eventEmitter.rm('event', callback) === eventEmitter.unsubscribe('event', callback)
+
+// 新增执行次数 execTime, 如果为 0，则为无限次
+eventEmitter.on('event', callback, execTime = 0);
+
+// 新增只绑定一次的 api once
+eventEmitter.once('event', callback) === eventEmitter.on('event', callback, execTime = 1) === eventEmitter.subscribe('event', callback, 1)
+
+```
+
+可以继承 EventEmitterClass ，实现异步事件监听
+
+```js
+import { EventEmitterClass } from 'basic-helper';
+
+class Demo extends EventEmitterClass {
+  onRes() {
+    this.emit('res', {something});
+  }
+}
+Demo.on('res', (resConfig) => {
+  
+});
+```
 
 ## 辅助函数
 

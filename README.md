@@ -10,6 +10,12 @@
 - 保持浏览器端的 localStorage 与 React Native 的 AyncStoage 兼容的 window.Storage 接口
 - 提供定义全局作用域的方式
 
+## 安装
+
+```shell
+npm i basic-helper --save
+```
+
 ## 订阅发布 EventEmitter
 
 ```js

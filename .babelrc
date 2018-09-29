@@ -1,7 +1,10 @@
 {
   "env": {
+    "test": {
+      "presets": ["@babel/preset-env"]
+    },
     "development": {
-      "presets": ["@babel/env"],
+      "presets": ["@babel/preset-env"],
       "plugins": [
         ["@babel/plugin-proposal-class-properties"]
       ]

@@ -14,8 +14,8 @@ export default function numTransformToCN(target, numMapper = defaultNumMapper) {
     const unitLength = unitMatrix.length;
     const [targetIntegerMatrix, targetFloorMatrix] = target.toString().split('.');
     const targetIntegerArr = targetIntegerMatrix.toString().split('');
-    const targetFloorArr = targetFloorMatrix ? targetFloorMatrix.toString().split('') : [];
-    const targetLength = targetIntegerArr.length;
+    // const targetFloorArr = targetFloorMatrix ? targetFloorMatrix.toString().split('') : [];
+    // const targetLength = targetIntegerArr.length;
 
     let unitCursor = 4;
 

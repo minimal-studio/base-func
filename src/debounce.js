@@ -1,4 +1,4 @@
-import {IsFunc} from './basic';
+import { IsFunc } from './basic';
 
 /**
  * 防抖

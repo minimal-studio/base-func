@@ -62,7 +62,7 @@ export function TimeFormat(secNum = 0) {
     hour: wrapTime(hour),
     min: wrapTime(min),
     sec: wrapTime(sec)
-  }
+  };
 }
 
 

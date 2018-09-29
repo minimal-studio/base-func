@@ -4,7 +4,7 @@
  */
 
 import NumTransformToCN from './num-to-cn';
-import {GetDefaultDateInfo, DateFormat, TimeFormat} from './datetime-helper';
+import { GetDefaultDateInfo, DateFormat, TimeFormat } from './datetime-helper';
 import EventEmitterClass from './event-emitter';
 import * as GlobabHelper from './basic';
 import DebounceClass from './debounce';
@@ -14,7 +14,7 @@ export const EventEmitter = new EventEmitterClass();
 /**
 * 注册一个 $GH 的全局对象 (Global Helper)
 */
-export let GlobalHelper = Object.assign({}, GlobabHelper, {
+export const GlobalHelper = Object.assign({}, GlobabHelper, {
   GetDefaultDateInfo,
   TimeFormat,
   DateFormat,
@@ -28,7 +28,7 @@ export {
   EventEmitterClass, DebounceClass,
   GetDefaultDateInfo, DateFormat, TimeFormat,
   NumTransformToCN
-}
+};
 
 let GlobalObjectMapper = {};
 export function defineGlobalObj(name, obj) {
@@ -37,8 +37,10 @@ export function defineGlobalObj(name, obj) {
 export function defineGlobalScope(name, obj) {
   let nameMark = `__IsSet${name}`;
   if(!window || window[nameMark]) return;
+  
   GlobalObjectMapper[name] = obj;
-  let finalObj = Object.assign(GlobalObjectMapper[name], {
+  
+  Object.assign(GlobalObjectMapper[name], {
     registe: registeObj => {
       Object.assign(GlobalObjectMapper[name], registeObj);
     }

@@ -1,8 +1,11 @@
+/**
+ * 辅助单位
+ */
+
 let basicFloatLen = 4;
 let floatLen = basicFloatLen;
 let basicUnit = 10000;
 let runingBasicUnit = basicUnit;
-
 
 export function GetFloatLen() {
   return floatLen;
@@ -18,7 +21,7 @@ export function SetBasicUnit(val) {
   runingBasicUnit = val;
 }
 
-export function GetBasicUnit(val) {
+export function GetBasicUnit() {
   return runingBasicUnit;
 }
 
@@ -26,7 +29,7 @@ export function ToFixed(currNumb, limit = floatLen, isStr = false) {
   let numb = +currNumb || 0;
   let numbStr = isStr ? numb.toFixed(6) : numb.toString();
   let [_int, _float] = numbStr.split('.');
-  if (!!_float) {
+  if (_float) {
     _float = _float.substr(0, limit);
     numb = `${_int}.${_float}`;
   }
@@ -49,7 +52,7 @@ export function MoneyFormat(money, logMark = floatLen, _basicUnit = basicUnit) {
     formoted.push(unit);
   });
   let result = formoted.reverse().join('');
-  if (!!moneyFloor) result += '.' + moneyFloor;
+  if (moneyFloor) result += '.' + moneyFloor;
   return isNegNum ? '-' + result : result;
 }
 
@@ -182,7 +185,7 @@ String.prototype.Mosaics = function(unseelen = 3, mark = '*') {
     result += _str;
   }).join('');
   return result;
-}
+};
 
 Array.prototype.deduplication = function() {
   let arr = this;
@@ -194,7 +197,7 @@ Array.prototype.deduplication = function() {
     }
   }
   return Object.keys(deduplicationObj);
-}
+};
 
 export function WrapNumbPrefix(numb, isNeedPrefix = false) {
   let _numb = +(numb);
@@ -210,7 +213,7 @@ export function GenerateNumberRange(numberRange) {
   return numberRangeArr;
 }
 
-if(!!window && window.localStorage) {
+if(window && window.localStorage) {
   /**
    * localStorage 的兼容接口，与 React Native 的 AyncStoage 的相同
    */
@@ -226,14 +229,14 @@ if(!!window && window.localStorage) {
     }
     CallFunc(callback)(null, result);
     return result;
-  }
+  };
   window.Storage.setItem = function(itemName, value) {
     let timestampName = itemName + '_TIMER';
     let _value = typeof value === 'string' ? value : JSON.stringify(value);
     localStorage.setItem(itemName, _value);
     localStorage.setItem(timestampName, Date.now().toString());
-  }
+  };
   window.Storage.removeItem = function(itemName) {
     localStorage.removeItem(itemName);
-  }
+  };
 }

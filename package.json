@@ -8,7 +8,8 @@
     "build": "rm -rf ./build/; npm run build:babel; npm run build:copy-files",
     "build:babel": "NODE_ENV=production babel ./src --out-dir ./build --ignore spec.js",
     "build:copy-files": "NODE_ENV=production babel-node ./scripts/copy-files.js",
-    "push": "npm publish; git add -A; git commit -m 'update'; git push origin master"
+    "push": "npm publish; git add -A; git commit -m 'update'; git push origin master",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,11 @@
   "bugs": {
     "url": "https://github.com/SANGET/basic-helper-js/issues"
   },
-  "homepage": "https://github.com/SANGET/basic-helper-js#readme"
+  "homepage": "https://github.com/SANGET/basic-helper-js#readme",
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "babel-jest": "^23.6.0",
+    "jest": "^23.6.0",
+    "regenerator-runtime": "^0.12.1"
+  }
 }

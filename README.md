@@ -1,6 +1,7 @@
 # Basic Helper
 
 [![Build Status](https://travis-ci.com/SANGET/basic-helper-js.svg?branch=master)](https://travis-ci.com/SANGET/basic-helper-js)
+[![install size](https://packagephobia.now.sh/badge?p=basic-helper)](https://packagephobia.now.sh/result?p=basic-helper)
 
 基础语义化辅助函数，提供一些基础的、通用的数据处理等方法，提供定义全局作用域的方法
 

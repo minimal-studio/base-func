@@ -36,7 +36,7 @@ export function ToFixed(currNumb, limit = floatLen, isStr = false) {
   return isStr ? numb : + numb;
 }
 
-export function MoneyFormat(money, logMark = floatLen, _basicUnit = basicUnit) {
+export function MoneyFormat(money, logMark = floatLen, _basicUnit = runingBasicUnit) {
   money = +money;
   if (typeof money !== 'number') return money || '';
   let isNegNum = /-/.test(money);

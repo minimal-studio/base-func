@@ -1,6 +1,6 @@
 {
   "name": "basic-helper",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "",
   "scripts": {
     "publish": "npm publish ./build",

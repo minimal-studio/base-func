@@ -88,7 +88,7 @@ export function CallFunc(func) {
 
 export function Call() {
   const [func, ..._arguments] = arguments;
-  IsFunc(func) && func.apply(null, _arguments);
+  return IsFunc(func) && func.apply(this, _arguments);
 }
 
 /**

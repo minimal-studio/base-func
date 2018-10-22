@@ -4,6 +4,17 @@
 
 ---------
 
+### v1.4.2
+
+- 新增一个 Call 的 Api，用于执行方法
+
+```js
+import { Call } from 'basic-helper';
+Call(func[, args]);
+```
+
+---------
+
 ### v1.4.*
 
 - 优化 eventEmitter 模块的机制，新增以下 API

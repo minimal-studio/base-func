@@ -89,7 +89,7 @@ export function CallFunc(func) {
  * 生成唯一ID
  * @return {String}
  */
-export function GenerteID() {
+export function UUID() {
   const max = 10000;
   const min = 1;
   const idLen = 9;
@@ -97,6 +97,9 @@ export function GenerteID() {
   let newID = originID.split('').reverse();
   let result = newID.slice(0, idLen).join('');
   return result;
+}
+export function GenerteID() {
+  return UUID.apply(this, arguments);
 }
 
 export function Random(numberRange) {

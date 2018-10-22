@@ -4,7 +4,7 @@ import {
   StripScript, IsUrl, IsFunc, IsObj, IsEmail, IsPhoneNumber,
   HasValue, 
   GenerateNumberRange, WrapNumbPrefix,
-  CallFunc, GenerteID, Random, InArr,
+  CallFunc, UUID, Random, InArr,
   UnitFormat, DateParseHook, 
   RemoveArrayItem
 } from '../src';

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "sourceMap": false,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "target": "es2015",
+    "jsx": "react"
+  },
+  "allowSyntheticDefaultImports": true,
+  "esModuleInterop": true,
+  "include": [
+    "./src/**/*"
+  ]
+}

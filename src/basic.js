@@ -141,8 +141,8 @@ export function RemoveArrayItem(arr, item) {
  * 判断是否有值
  */
 export function HasValue(val) {
-  if (typeof val === 'undefined' || val === null || val === '') return false;
-  return true;
+  if(val === 0) return true;
+  return !!val;
 }
 
 /**

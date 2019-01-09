@@ -4,6 +4,11 @@
 
 ---------
 
+### v1.4.6
+
+- 新增 ToUTC 时间的接口
+- GetDefaultDateInfo 改名为 DateRange
+
 ### v1.4.5
 
 - 调整 HasValue 的判断

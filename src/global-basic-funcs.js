@@ -4,7 +4,7 @@
  */
 
 import NumTransformToCN from './num-to-cn';
-import { GetDefaultDateInfo, DateFormat, TimeFormat } from './datetime-helper';
+import { DateRange, GetDefaultDateInfo, DateFormat, TimeFormat } from './datetime-helper';
 import EventEmitterClass from './event-emitter';
 import * as GlobabHelper from './basic';
 import DebounceClass from './debounce';
@@ -15,6 +15,7 @@ export const EventEmitter = new EventEmitterClass();
 * 注册一个 $GH 的全局对象 (Global Helper)
 */
 export const GlobalHelper = Object.assign({}, GlobabHelper, {
+  DateRange,
   GetDefaultDateInfo,
   TimeFormat,
   DateFormat,

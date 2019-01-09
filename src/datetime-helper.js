@@ -9,8 +9,9 @@ function wrapTime(num) {
 /**
  * 简单的时间处理函数
  * 格式化日期和时间，获取特定的时间范围
+ * @param {dateObj} date 时间对象
+ * @param {string} format 格式化的
  */
-
 export function DateFormat(date, format = "YYYY-MM-DD") {
 
   let hasSeparator = !(/Y+M+D+/.test(format));
@@ -50,6 +51,32 @@ export function DateFormat(date, format = "YYYY-MM-DD") {
   return resultFormat.join('');
 }
 
+const timeZoneOffset = (new Date()).getTimezoneOffset();
+const timeZoneOffsetStamp = timeZoneOffset * 60000;
+let timeZone = timeZoneOffset / 60 * -1;
+if(Math.abs(timeZone) < 10) timeZone = `0${Math.abs(timeZone)}`;
+const timeZoneSuffix = `${timeZone > 0 ? '+' : '-'}${timeZone}:00`;
+
+/**
+ * 把格式转化成标准 UTC 时间
+ *
+ * @export
+ * @param {dateObj} targetDate
+ * @returns
+ */
+export function ToUTC(targetDate) {
+  let targetDatstamp = Date.parse(targetDate);
+  let resDate = new Date(targetDatstamp - timeZoneOffsetStamp).toISOString().split('.')[0] + `${timeZoneSuffix}`;
+  return resDate;
+}
+
+/**
+ * 格式化时间
+ *
+ * @export
+ * @param {number} [secNum=0]
+ * @returns
+ */
 export function TimeFormat(secNum = 0) {
   if(secNum < 0) secNum = 0;
   let sec = secNum % 60;
@@ -65,13 +92,17 @@ export function TimeFormat(secNum = 0) {
   };
 }
 
-
 /**
- * 默认的时间控件的时间间隔, 将查询时间调为 5 天以内的
+ * 返回时间返回的函数
+ *
+ * @export
+ * @param {number} [startDayOffset=10] 开始时间前移几天，默认前移 10 天
+ * @param {number} [endDayOffset=0] 结束位置
+ * @param {string} [format='YYYY-MM-DD'] 返回的 format
+ * @param {string} [extendFormat=[' 00:00:00', ' 23:59:59']] 返回字符串的后缀
+ * @return {string}
  */
-const _startDayOffset = 10;
-const _endDayOffset = 0;
-export function GetDefaultDateInfo(startDayOffset = _startDayOffset, endDayOffset = _endDayOffset, format = 'YYYY-MM-DD', extendFormat = [' 00:00:00', ' 23:59:59']) {
+export function DateRange(startDayOffset = 10, endDayOffset = 0, format = 'YYYY-MM-DD', extendFormat = [' 00:00:00', ' 23:59:59']) {
 
   const currTime = Date.parse(new Date());
   const preTime = currTime - (startDayOffset * 24 * 60 * 60 * 1000);
@@ -80,4 +111,9 @@ export function GetDefaultDateInfo(startDayOffset = _startDayOffset, endDayOffse
   let endDateFormat = DateFormat(nextTime, format) + (extendFormat[1] || '');
 
   return [startDateFormat, endDateFormat];
+}
+
+export function GetDefaultDateInfo(...argument) {
+  console.warn('GetDefaultDateInfo 要废弃了，请使用 DateRange 代替');
+  DateRange(...argument);
 }

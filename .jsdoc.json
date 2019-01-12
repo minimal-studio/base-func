@@ -11,7 +11,12 @@
     "dictionaries": ["jsdoc", "closure"]
   },
   "templates": {
+    "systemName": "Basic-Helper",
+    "systemSummary": "基础 js 函数库，输入类型验证等",
+    "systemColor": "#5ab99b",
+    "copyright": "Basic-helper",
     "cleverLinks": false,
+    "inlineNav": true,
     "monospaceLinks": false
   },
   "opts": {
@@ -19,6 +24,6 @@
     "encoding": "utf8",
     "private": true,
     "recurse": true,
-    "template": "./node_modules/minami"
+    "template": "./node_modules/foodoc/template"
   }
 }

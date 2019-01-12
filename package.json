@@ -29,10 +29,10 @@
     "@babel/preset-env": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
+    "foodoc": "^0.0.9",
     "fs-extra": "^7.0.0",
     "jest": "^23.6.0",
     "jsdoc": "^3.5.5",
-    "minami": "^1.2.3",
     "regenerator-runtime": "^0.12.1"
   }
 }

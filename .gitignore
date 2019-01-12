@@ -39,3 +39,5 @@ public/images
 yarn.lock
 dist
 lib
+
+jsdocs

@@ -1,9 +1,9 @@
 import { Call } from './basic';
 
+/**
+ * localStorage 的兼容接口，与 React Native 的 AyncStoage 的相同
+ */
 if(window && window.localStorage) {
-  /**
-   * localStorage 的兼容接口，与 React Native 的 AyncStoage 的相同
-   */
   window.Storage.getItem = function(itemName, callback, timeout = false) {
     let timestampName = itemName + '_TIMER';
     let prevTimer = +(localStorage.getItem(timestampName));

@@ -7,10 +7,11 @@ function wrapTime(num) {
 }
 
 /**
- * 简单的时间处理函数
  * 格式化日期和时间，获取特定的时间范围
+ * 
  * @param {dateObj} date 时间对象
  * @param {string} format 格式化的
+ * @return {string}
  */
 export function DateFormat(date, format = "YYYY-MM-DD") {
 
@@ -60,9 +61,8 @@ const timeZoneSuffix = `${timeZone > 0 ? '+' : '-'}${timeZone}:00`;
 /**
  * 把格式转化成标准 UTC 时间
  *
- * @export
  * @param {dateObj} targetDate
- * @returns
+ * @return {string}
  */
 export function ToUTC(targetDate) {
   let targetDatstamp = Date.parse(targetDate);
@@ -73,9 +73,8 @@ export function ToUTC(targetDate) {
 /**
  * 格式化时间
  *
- * @export
  * @param {number} [secNum=0]
- * @returns
+ * @return {string}
  */
 export function TimeFormat(secNum = 0) {
   if(secNum < 0) secNum = 0;
@@ -100,7 +99,6 @@ const defaultDateRangeOptions = {
 /**
  * 返回时间返回的函数
  *
- * @export
  * @param {number} [startDayOffset=10] 开始时间前移几天，默认前移 10 天
  * @param {number} [endDayOffset=0] 结束位置
  * @param {string} [format='YYYY-MM-DD'] 返回的 format

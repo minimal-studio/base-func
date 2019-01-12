@@ -22,6 +22,9 @@ describe('Test MoneyFormat', () => {
   test('MoneyFormat: 100000, basicUnit 10000, floatLen 4 to 100,000.0000', () => {
     expect(MoneyFormat(money * basicUnit, GetFloatLen(), basicUnit)).toMatch('100,000.0000');
   });
+  test('MoneyFormat: -100000, basicUnit 10000, floatLen 4 to -100,000.0000', () => {
+    expect(MoneyFormat(- money * basicUnit, GetFloatLen(), basicUnit)).toMatch('-100,000.0000');
+  });
   test('MoneyFormat: 100000 * 10000 with toFixed(2) to 100,000.00', () => {
     expect(MoneyFormat(money * basicUnit, 2)).toMatch('100,000.00');
   });

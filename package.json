@@ -8,6 +8,7 @@
     "build": "rm -rf ./build/; npm run build:babel; npm run build:copy-files",
     "build:babel": "NODE_ENV=production babel ./src --out-dir ./build --ignore spec.js",
     "build:copy-files": "NODE_ENV=production babel-node ./scripts/copy-files.js",
+    "jsdoc": "jsdoc -c .jsdoc.json ./src",
     "test": "jest"
   },
   "repository": {
@@ -30,6 +31,8 @@
     "babel-jest": "^23.6.0",
     "fs-extra": "^7.0.0",
     "jest": "^23.6.0",
+    "jsdoc": "^3.5.5",
+    "minami": "^1.2.3",
     "regenerator-runtime": "^0.12.1"
   }
 }

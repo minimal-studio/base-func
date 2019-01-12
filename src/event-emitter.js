@@ -1,38 +1,35 @@
+import { CallFunc, IsFunc, RemoveArrayItem } from './basic';
+
 /**
  * 订阅发布模块
  * 
- * 使用
- * const eventEmitter = new EventEmitterClass();
+ * @example
+ * // 使用 basic helper 提供的内置全局 EventEmitter 对象
+ * import { EventEmitter } from 'basic-helper';
+ * 
+ * // 或者自定义一个全新的对象
+ * const _EventEmitter = new EventEmitterClass();
+ * 
+ * const callback = () => {};
  *
- * subscribe 事件
- * eventEmitter.subscribe('LOGIN_SUCCESS', (emitObj) => {
- *   console.log(emitObj);
- * }, execTime = 0);
+ * // 订阅: on, 参数说明 (eventName, callback, execTime)
+ * // eventName: 订阅的事件的名字
+ * // callback:  事件被触发后执行的回调
+ * // execTime:  监听该事件的次数，0 为无限
+ * EventEmitter.on('LOGIN_SUCCESS', callback, execTime = 0);
  *
- * Emit 事件
- * eventEmitter.emit('LOGIN_SUCCESS', {
+ * // 广播: emit
+ * // 第二个参数为广播内容，会作为对应事件中的回调中的参数
+ * EventEmitter.emit('LOGIN_SUCCESS', {
  *   desc: '发送描述'
  * });
  *
- * unsubscribe 事件
- * eventEmitter.unsubscribe('LOGIN_SUCCESS', function() {});
+ * // 删除订阅的事件
+ * EventEmitter.rm('LOGIN_SUCCESS', callback);
  */
-import { CallFunc, IsFunc, RemoveArrayItem } from './basic';
 
-export default class EventEmitterClass {
+class EventEmitterClass {
   constructor() {
-    /**
-     * 结构
-     * {
-     *   'eventName': [
-     *     {
-     *       handle: function,
-     *       executed: 0, // 已执行次数
-     *       execTime: 0  // 预期执行次数，0 为无限次
-     *     }
-     *   ]
-     * }
-     */
     this.subscribeList = {};
   }
   on() {
@@ -77,3 +74,4 @@ export default class EventEmitterClass {
     }
   }
 }
+export default EventEmitterClass;

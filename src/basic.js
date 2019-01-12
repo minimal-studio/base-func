@@ -174,7 +174,7 @@ export function CallFunc(func) {
 /**
  * 检查输入是否为函数，如果是，则直接调用，把从第二个参数后面的所有参数传入到第一个参数中
  *
- * @return {function res} 函数执行后的结果
+ * @return {*} 函数执行后的结果
  */
 export function Call() {
   const [func, ..._arguments] = arguments;
@@ -205,7 +205,7 @@ export function GenerteID() {
 /**
  * 生成随机数
  *
- * @param {[start, end]} numberRange 期望随机数的范围
+ * @param {array} [numberRange=[start, end]] 期望随机数的范围
  * @return {number}
  */
 export function Random(numberRange) {
@@ -238,7 +238,7 @@ export function InArr(arr, item) {
 /**
  * 删除数组中相同项
  * @param  {array} arr
- * @param  {string, number, boolean} item
+ * @param  {string | number | boolean} item
  * @return {array}
  */
 export function RemoveArrayItem(arr, item) {
@@ -273,8 +273,8 @@ export function IsObj(obj) {
  * 格式化金钱单位
  *
  * @param {number} [cost=0] 金额
- * @param {string: ['yuan', 'jiao', 'fen', 'li']} [unit='yuan'] 单位
- * @returns
+ * @param {string} [unit=['yuan' | 'jiao' | 'fen' | 'li']] 单位
+ * @return {string}
  */
 export function UnitFormat(cost = 0, unit = 'yuan') {
   const UNITS = {
@@ -288,8 +288,8 @@ export function UnitFormat(cost = 0, unit = 'yuan') {
 
 /**
  * 兼容浏览器对时间格式的认知
- * @param  {[type]} dateStringInRange [description]
- * @return {[type]}                   [description]
+ * @param  {string} dateStringInRange
+ * @return {string}                  
  */
 export function DateParseHook(dateStringInRange) {
   if (!dateStringInRange) return dateStringInRange;

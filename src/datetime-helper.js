@@ -92,6 +92,11 @@ export function TimeFormat(secNum = 0) {
   };
 }
 
+const defaultDateRangeOptions = {
+  format: 'YYYY-MM-DD',
+  extendFormat: [' 00:00:00', ' 23:59:59'],
+  toUTC: true
+};
 /**
  * 返回时间返回的函数
  *
@@ -102,13 +107,20 @@ export function TimeFormat(secNum = 0) {
  * @param {string} [extendFormat=[' 00:00:00', ' 23:59:59']] 返回字符串的后缀
  * @return {string}
  */
-export function DateRange(startDayOffset = 10, endDayOffset = 0, format = 'YYYY-MM-DD', extendFormat = [' 00:00:00', ' 23:59:59']) {
+export function DateRange(startDayOffset = 10, endDayOffset = 0, options = defaultDateRangeOptions) {
+
+  const { format, extendFormat, toUTC = true } = options;
 
   const currTime = Date.parse(new Date());
   const preTime = currTime - (startDayOffset * 24 * 60 * 60 * 1000);
   const nextTime = currTime + (endDayOffset * 24 * 60 * 60 * 1000);
   let startDateFormat = DateFormat(preTime, format) + (extendFormat[0] || '');
   let endDateFormat = DateFormat(nextTime, format) + (extendFormat[1] || '');
+
+  if(toUTC) {
+    startDateFormat = ToUTC(startDateFormat);
+    endDateFormat = ToUTC(endDateFormat);
+  }
 
   return [startDateFormat, endDateFormat];
 }

@@ -4,7 +4,8 @@
  */
 
 import NumTransformToCN from './num-to-cn';
-import { DateRange, GetDefaultDateInfo, DateFormat, TimeFormat } from './datetime-helper';
+// import { DateRange, GetDefaultDateInfo, DateFormat, TimeFormat } from './datetime-helper';
+import * as DateHelper from './datetime-helper';
 import EventEmitterClass from './event-emitter';
 import * as GlobabHelper from './basic';
 import DebounceClass from './debounce';
@@ -15,21 +16,16 @@ export const EventEmitter = new EventEmitterClass();
 * 注册一个 $GH 的全局对象 (Global Helper)
 */
 export const GlobalHelper = Object.assign({}, GlobabHelper, {
-  DateRange,
-  GetDefaultDateInfo,
-  TimeFormat,
-  DateFormat,
+  // DateRange,
+  // GetDefaultDateInfo,
+  // TimeFormat,
+  // DateFormat,
+  ...DateHelper,
   NumTransformToCN,
   Debounce: DebounceClass,
   EventEmitterClass: EventEmitterClass,
   EventEmitter: EventEmitter,
 });
-
-export {
-  EventEmitterClass, DebounceClass,
-  GetDefaultDateInfo, DateFormat, TimeFormat,
-  NumTransformToCN
-};
 
 let GlobalObjectMapper = {};
 export function defineGlobalObj(name, obj) {
@@ -63,3 +59,11 @@ export function defineGlobalScope(name, obj) {
   });
 }
 defineGlobalScope('$GH', GlobalHelper);
+
+export {
+  EventEmitterClass, DebounceClass,
+  // GetDefaultDateInfo, DateFormat, TimeFormat,
+  NumTransformToCN
+};
+
+export * from './datetime-helper';

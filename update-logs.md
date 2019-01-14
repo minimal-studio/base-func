@@ -4,6 +4,10 @@
 
 ---------
 
+### v1.4.8
+
+- 调整 DateHelper 的导出配置
+
 ### v1.4.7
 
 - 调整 DateRange 的 options

@@ -104,9 +104,9 @@ const defaultDateRangeOptions = {
  * @param {string} [options={format: 'YYYY-MM-DD', extendFormat: [' 00:00:00', ' 23:59:59'], toUTC: true}] 返回的 format
  * @return {string}
  */
-export function DateRange(startDayOffset = 10, endDayOffset = 0, options = defaultDateRangeOptions) {
+export function DateRange(startDayOffset = 10, endDayOffset = 0, options) {
 
-  const { format, extendFormat, toUTC = true } = options;
+  const { format, extendFormat, toUTC = true } = Object.assign({}, defaultDateRangeOptions, options);
 
   const currTime = Date.parse(new Date());
   const preTime = currTime - (startDayOffset * 24 * 60 * 60 * 1000);

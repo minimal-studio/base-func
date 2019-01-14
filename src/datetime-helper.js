@@ -101,8 +101,7 @@ const defaultDateRangeOptions = {
  *
  * @param {number} [startDayOffset=10] 开始时间前移几天，默认前移 10 天
  * @param {number} [endDayOffset=0] 结束位置
- * @param {string} [format='YYYY-MM-DD'] 返回的 format
- * @param {string} [extendFormat=[' 00:00:00', ' 23:59:59']] 返回字符串的后缀
+ * @param {string} [options={format: 'YYYY-MM-DD', extendFormat: [' 00:00:00', ' 23:59:59'], toUTC: true}] 返回的 format
  * @return {string}
  */
 export function DateRange(startDayOffset = 10, endDayOffset = 0, options = defaultDateRangeOptions) {

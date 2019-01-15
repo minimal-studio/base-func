@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.com/SANGET/basic-helper-js.svg?branch=master)](https://travis-ci.com/SANGET/basic-helper-js)
 [![install size](https://packagephobia.now.sh/badge?p=basic-helper)](https://packagephobia.now.sh/result?p=basic-helper)
 
+- [在线文档](https://basic.ukelli.com/)
+
 基础语义化辅助函数，提供一些基础的、通用的数据处理等方法，提供定义全局作用域的方法
 
 引入即可获取内置的 $GH 函数，所有的内置函数都挂在在 $GH 对象下

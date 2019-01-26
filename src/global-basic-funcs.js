@@ -59,15 +59,7 @@ export function defineGlobalScope(name, obj) {
   });
 }
 
-(function(factory) {
-  if (typeof module !== 'undefined') {
-    // module.exports = factory();
-  } else {
-    factory();
-  }
-}(function() {
-  defineGlobalScope('$GH', GlobalHelper);
-}));
+defineGlobalScope('$GH', GlobalHelper);
 
 export {
   EventEmitterClass, DebounceClass,

@@ -6,6 +6,12 @@ function wrapTime(num) {
   return result;
 }
 
+function wrapTimePrefix(timeNum) {
+  if(timeNum < 10) {
+    timeNum = '0' + timeNum;
+  }
+  return timeNum.toString();
+}
 /**
  * 格式化日期和时间，获取特定的时间范围
  * 
@@ -20,17 +26,17 @@ export function DateFormat(date, format = "YYYY-MM-DD") {
   let time = new Date(date);
   if(!time || time == 'Invalid Date') return date;
 
-  let today = new Date();
+  // let today = new Date();
   let YYYY = time.getFullYear(date).toString();
 
   // 如果时间少于今年, 即返回空字符串
   // if(YYYY < today.getFullYear(date).toString()) return '';
 
-  let MM = wrapTimePrefox(time.getMonth(date) + 1);
-  let DD = wrapTimePrefox(time.getDate(date));
-  let hh = wrapTimePrefox(time.getHours(date));
-  let mm = wrapTimePrefox(time.getMinutes(date));
-  let ss = wrapTimePrefox(time.getSeconds(date));
+  let MM = wrapTimePrefix(time.getMonth(date) + 1);
+  let DD = wrapTimePrefix(time.getDate(date));
+  let hh = wrapTimePrefix(time.getHours(date));
+  let mm = wrapTimePrefix(time.getMinutes(date));
+  let ss = wrapTimePrefix(time.getSeconds(date));
   let timeObj = {
     YYYY, MM, DD, hh, mm, ss
   };
@@ -41,13 +47,6 @@ export function DateFormat(date, format = "YYYY-MM-DD") {
       resultFormat.push(_offset + timeObj[key].toString());
     });
   });
-
-  function wrapTimePrefox(timeNum) {
-    if(timeNum < 10) {
-      timeNum = '0' + timeNum;
-    }
-    return timeNum.toString();
-  }
   // format
   return resultFormat.join('');
 }

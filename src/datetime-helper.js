@@ -64,6 +64,8 @@ const timeZoneSuffix = `${timeZone > 0 ? '+' : '-'}${timeZone}:00`;
  * @return {string}
  */
 export function ToUTC(targetDate) {
+  /** 兼容 safari 对于时间格式的解析问题 */
+  targetDate = targetDate.replace(/-/g, '/');
   let targetDatstamp = Date.parse(targetDate);
   let resDate = new Date(targetDatstamp - timeZoneOffsetStamp).toISOString().split('.')[0] + `${timeZoneSuffix}`;
   return resDate;

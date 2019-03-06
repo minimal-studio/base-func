@@ -40,4 +40,7 @@ describe('Test functional functions', () => {
   test('IsUrl: match url', () => {
     expect(IsUrl('http://abc.com')).toBe(true);
   });
+  test('HasValue', () => {
+    expect(HasValue(0)).toBe(true);
+  });
 });

@@ -67,7 +67,12 @@ export function ToUTC(targetDate) {
   /** 兼容 safari 对于时间格式的解析问题 */
   targetDate = targetDate.replace(/-/g, '/');
   let targetDatstamp = Date.parse(targetDate);
-  let resDate = new Date(targetDatstamp - timeZoneOffsetStamp).toISOString().split('.')[0] + `${timeZoneSuffix}`;
+  let resDate
+  if(targetDatstamp) {
+    resDate = new Date(targetDatstamp - timeZoneOffsetStamp).toISOString().split('.')[0] + `${timeZoneSuffix}`;
+  } else {
+    console.log('请输入有效时间');
+  }
   return resDate;
 }
 

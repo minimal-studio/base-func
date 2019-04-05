@@ -1,25 +1,35 @@
 /**
- * 基准数字的小数点后几位，用于 MoneyFormat
+ * 默认的格式化数字的小数点位数长度
  */
-let basicFloatLen = 4;
+const BASIC_FLOAT_LEN = 4;
+
+/** 
+ * 默认的金额格式化时的基准单位，应用于 MoneyFormat()，默认为毫 10000
+ * 1 元
+ * 10 角
+ * 100 分
+ * 1000 厘
+ * 10000 毫
+ */
+const BASIC_UNIT = 10000;
 
 /**
- * 可以设置的小数点后几位的长度
+ * 应用于 ToFixed 格式化数字的小数点位数长度，默认为 4
  */
-let floatLen = basicFloatLen;
+let floatLen = BASIC_FLOAT_LEN;
+
+/** 
+ * 金额格式化时的基准单位，应用于 MoneyFormat()，默认为毫 10000
+ * 1 元
+ * 10 角
+ * 100 分
+ * 1000 厘
+ * 10000 毫
+ */
+let basicUnit = BASIC_UNIT;
 
 /**
- * 基准数字单位，10000 为毫
- */
-let basicUnit = 10000;
-
-/**
- * 可以设置的基准单位
- */
-let runingBasicUnit = basicUnit;
-
-/**
- * 获取小数点后移位数
+ * 获取 floatLen
  *
  * @return {number}
  */
@@ -28,7 +38,7 @@ export function GetFloatLen() {
 }
 
 /**
- * 设置小数点后移位数
+ * 设置 floatLen
  *
  * @param {number} len 长度
  * @return {void}
@@ -46,7 +56,7 @@ export function SetFloatLen(len) {
  * @return {void}
  */
 export function SetBasicUnit(unit) {
-  runingBasicUnit = unit;
+  basicUnit = unit;
 }
 
 /**
@@ -55,11 +65,11 @@ export function SetBasicUnit(unit) {
  * @return {number}
  */
 export function GetBasicUnit() {
-  return runingBasicUnit;
+  return basicUnit;
 }
 
 /**
- * 修正数字的小数点后多少位
+ * 修正数字的小数点后的位数
  *
  * @param {number | string} targetNumber 目标数字
  * @param {number} [limit=floatLen] 小数点后的长度
@@ -78,14 +88,14 @@ export function ToFixed(targetNumber, limit = floatLen, isStr = false) {
 }
 
 /**
- * 把数字格式化成金钱格式
+ * 把数字格式化成金钱格式，并且会除以 basicUnit ，转换成基准单位
  *
  * @param {number | string} money 目标数字
  * @param {number} [logMark=floatLen] 格式化后的小数点长度
- * @param {number} [_basicUnit=runingBasicUnit] 基础单位
+ * @param {number} [_basicUnit=basicUnit] 基础单位
  * @return {string}
  */
-export function MoneyFormat(money, logMark = floatLen, _basicUnit = runingBasicUnit) {
+export function MoneyFormat(money, logMark = floatLen, _basicUnit = basicUnit) {
   money = +money;
   if (typeof money !== 'number') return money || '';
   let isNegNum = money < 0;
@@ -115,11 +125,11 @@ export function MoneyFormat(money, logMark = floatLen, _basicUnit = runingBasicU
 export function ToBasicUnitMoney(money) {
   money = +money;
   if (typeof money !== 'number') return money || '';
-  return ToFixed(money * runingBasicUnit, basicFloatLen);
+  return ToFixed(money * basicUnit, floatLen);
 }
 
 /**
- * 把数字格式化的小数点隐藏
+ * 隐藏小数点的开关
  *
  * @return {boolean} 是否隐藏了小数点
  */
@@ -159,6 +169,36 @@ export function IsUrl(url) {
 export function IsFunc(func) {
   return typeof func === 'function';
 }
+/**
+ * 判断输入是否对象
+ * 
+ * @param {object}
+ */
+export function IsObj(obj) {
+  return !!obj && typeof obj === 'object' && !Array.isArray(obj);
+}
+
+/**
+ * 判断输入是否为 Email
+ *
+ * @param {*} val
+ * @return {boolean}
+ */
+export function IsEmail(val) {
+  let mail_reg = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+  return mail_reg.test(val);
+}
+
+/**
+ * 判断输入是否为有效的手机号码
+ *
+ * @param {*} val
+ * @return {boolean}
+ */
+export function IsPhoneNumber(val) {
+  let phone_reg = /^1[3|4|5|7|8][0-9]{9}$/;
+  return phone_reg.test(val);
+}
 
 /**
  * 检查输入是否为函数，并返回一个一定可以调用的函数
@@ -172,7 +212,7 @@ export function CallFunc(func) {
 }
 
 /**
- * 检查输入是否为函数，如果是，则直接调用，把从第二个参数后面的所有参数传入到第一个参数中
+ * 检查输入是否为函数，如果是，则直接调用，把从（包含）第二个参数起的所有参数传入到该函数中
  *
  * @return {*} 函数执行后的结果
  */
@@ -203,7 +243,7 @@ export function GenerteID() {
 }
 
 /**
- * 生成随机数
+ * 根据传入的随机数范围生成随机数
  *
  * @param {array} [numberRange=[start, end]] 期望随机数的范围
  * @return {number}
@@ -260,14 +300,6 @@ export function HasValue(val) {
   return !!val;
 }
 
-/**
- * 判断输入是否对象
- * 
- * @param {object}
- */
-export function IsObj(obj) {
-  return !!obj && typeof obj === 'object' && !Array.isArray(obj);
-}
 
 /**
  * 格式化金钱单位
@@ -297,28 +329,6 @@ export function DateParseHook(dateStringInRange) {
   let date = new Date(resDateStr);
   if (date == 'Invalid Date') date = new Date(resDateStr.replace(/-/g, '/'));
   return date;
-}
-
-/**
- * 判断输入是否为 Email
- *
- * @param {*} val
- * @return {boolean}
- */
-export function IsEmail(val) {
-  let mail_reg = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
-  return mail_reg.test(val);
-}
-
-/**
- * 判断输入是否为有效的手机号码
- *
- * @param {*} val
- * @return {boolean}
- */
-export function IsPhoneNumber(val) {
-  let phone_reg = /^1[3|4|5|7|8][0-9]{9}$/;
-  return phone_reg.test(val);
 }
 
 /**

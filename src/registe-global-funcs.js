@@ -5,9 +5,8 @@
 
 import NumTransformToCN from './num-to-cn';
 // import { DateRange, GetDefaultDateInfo, DateFormat, TimeFormat } from './datetime-helper';
-import * as DateHelper from './datetime-helper';
+import * as GlobabHelper from '.';
 import EventEmitterClass from './event-emitter';
-import * as GlobabHelper from './basic';
 import DebounceClass from './debounce';
 
 export const EventEmitter = new EventEmitterClass();
@@ -20,7 +19,6 @@ export const GlobalHelper = Object.assign({}, GlobabHelper, {
   // GetDefaultDateInfo,
   // TimeFormat,
   // DateFormat,
-  ...DateHelper,
   NumTransformToCN,
   Debounce: DebounceClass,
   EventEmitterClass: EventEmitterClass,
@@ -66,5 +64,3 @@ export {
   // GetDefaultDateInfo, DateFormat, TimeFormat,
   NumTransformToCN
 };
-
-export * from './datetime-helper';

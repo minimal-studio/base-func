@@ -1,4 +1,7 @@
-import { CallFunc, IsFunc, RemoveArrayItem } from './basic';
+// import { CallFunc, IsFunc, RemoveArrayItem } from './basic';
+import { CallFunc } from './call';
+import { IsFunc } from './filter';
+import { RemoveArrayItem } from './array';
 
 /**
  * 订阅发布模块

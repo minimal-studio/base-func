@@ -64,10 +64,11 @@ const timeZoneSuffix = `${timeZone > 0 ? '+' : '-'}${timeZone}:00`;
  * @return {string}
  */
 export function ToUTC(targetDate) {
+  targetDate = DateFormat(targetDate, 'YYYY/MM/DD hh:mm:ss');
   /** 兼容 safari 对于时间格式的解析问题 */
-  targetDate = targetDate.replace(/-/g, '/');
+  // targetDate = targetDate.replace(/-/g, '/');
   let targetDatstamp = Date.parse(targetDate);
-  let resDate
+  let resDate;
   if(targetDatstamp) {
     resDate = new Date(targetDatstamp - timeZoneOffsetStamp).toISOString().split('.')[0] + `${timeZoneSuffix}`;
   } else {
@@ -82,7 +83,7 @@ export function ToUTC(targetDate) {
  * @param {number} [secNum=0]
  * @return {string}
  */
-export function TimeFormat(secNum = 0) {
+export function TimeFormat(secNum = 0, toString = false) {
   if(secNum < 0) secNum = 0;
   let sec = secNum % 60;
   let min = Math.floor(secNum / 60);
@@ -90,7 +91,7 @@ export function TimeFormat(secNum = 0) {
 
   min = (min - hour * 60);
 
-  return {
+  return toString ? `${hour}:${min}:${sec}` : {
     hour: wrapTime(hour),
     min: wrapTime(min),
     sec: wrapTime(sec)
@@ -99,7 +100,7 @@ export function TimeFormat(secNum = 0) {
 
 const defaultDateRangeOptions = {
   format: 'YYYY-MM-DD',
-  extendFormat: [' 00:00:00', ' 23:59:59'],
+  extendFormat: ['00:00:00', '23:59:59'],
   toUTC: true
 };
 /**
@@ -117,8 +118,8 @@ export function DateRange(startDayOffset = 10, endDayOffset = 0, options) {
   const currTime = Date.parse(new Date());
   const preTime = currTime - (startDayOffset * 24 * 60 * 60 * 1000);
   const nextTime = currTime + (endDayOffset * 24 * 60 * 60 * 1000);
-  let startDateFormat = DateFormat(preTime, format) + (extendFormat[0] || '');
-  let endDateFormat = DateFormat(nextTime, format) + (extendFormat[1] || '');
+  let startDateFormat = DateFormat(preTime, format) + ` ${(extendFormat[0] || '')}`;
+  let endDateFormat = DateFormat(nextTime, format) + ` ${(extendFormat[1] || '')}`;
 
   if(toUTC) {
     startDateFormat = ToUTC(startDateFormat);
@@ -126,6 +127,20 @@ export function DateRange(startDayOffset = 10, endDayOffset = 0, options) {
   }
 
   return [startDateFormat, endDateFormat];
+}
+
+/**
+ * 兼容浏览器对时间格式的认知
+ * @param  {string} dateStringInRange
+ * @return {string}                  
+ */
+export function DateParseHook(dateStringInRange) {
+  console.warn('DateParseHook 要废弃了，请使用 ToUTC');
+  if (!dateStringInRange) return dateStringInRange;
+  let resDateStr = dateStringInRange + '+0000';
+  let date = new Date(resDateStr);
+  if (date == 'Invalid Date') date = new Date(resDateStr.replace(/-/g, '/'));
+  return date;
 }
 
 export function GetDefaultDateInfo(...argument) {

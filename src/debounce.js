@@ -1,4 +1,4 @@
-import { IsFunc } from './basic';
+import { IsFunc } from './filter';
 
 /**
  * 防抖函数

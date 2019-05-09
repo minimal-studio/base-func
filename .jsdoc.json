@@ -12,9 +12,9 @@
   },
   "templates": {
     "systemName": "Basic-Helper",
-    "systemSummary": "基础 js 函数库，输入类型验证等",
+    "systemSummary": "js 辅助函数库",
     "systemColor": "#5ab99b",
-    "copyright": "basic-helper",
+    "copyright": "SANGET",
     "cleverLinks": false,
     "inlineNav": true,
     "monospaceLinks": false

@@ -1,0 +1,103 @@
+---
+name: Datetime / 时间处理
+route: /datetime
+---
+
+import { useState } from 'react';
+import { Playground } from 'docz'
+import { DateFormat, ToUTC, TimeFormat, DateRange } from '../src/datetime-helper';
+
+# Datetime / 时间处理
+
+> 由于浏览器对于 JS 时间对象的支持有缺陷，basic-helper 提供统一的时间处理方式，包括
+
+- 日期格式化
+- 时间格式化
+- UTC 标准时间转换
+- 生产时间范围
+
+## DateFormat
+
+<Playground>
+  {
+    () => {
+      const [now, setDate] = useState(Date.now());
+      return (
+        <div>
+          <div>默认时间: {DateFormat(now)}</div>
+          <hr />
+          <div>时分秒: {DateFormat(now, 'YYYY-MM-DD hh:mm:ss')}</div>
+        </div>
+      )
+    }
+  }
+</Playground>
+
+## ToUTC
+
+转换到标准 UTC 时间格式
+
+<Playground>
+  {
+    () => {
+      const [now, setDate] = useState(Date.now());
+      setInterval(() => {
+        setDate(Date.now());
+      }, 1000)
+      return (
+        <div>
+          <div>默认: {ToUTC(now)}</div>
+        </div>
+      )
+    }
+  }
+</Playground>
+
+## TimeFormat
+
+<Playground>
+  {
+    () => {
+      const [now, setDate] = useState((new Date()).getSeconds());
+      setInterval(() => {
+        setDate((new Date()).getSeconds());
+      }, 1000)
+      return (
+        <div>
+          <div>默认: {JSON.stringify(TimeFormat(now))}</div>
+          <hr />
+          <div>输出字符串: {TimeFormat(now, true)}</div>
+        </div>
+      )
+    }
+  }
+</Playground>
+
+## DateRange
+
+生产时间范围
+
+```js
+const options = {
+  format: 'YYYY-MM-DD',
+  extendFormat: [' 00:00:00', ' 23:59:59'],
+  toUTC: true
+};
+DateRange(startDayOffset = 10, endDayOffset = 0, options)
+```
+
+<Playground>
+  {
+    () => {
+      return (
+        <div>
+          <div>默认: {JSON.stringify(DateRange())}</div>
+          <hr />
+          <div>不输出 UTC 时间: {JSON.stringify(DateRange(10, 0, {
+            toUTC: false
+          }))}</div>
+        </div>
+      )
+    }
+  }
+</Playground>

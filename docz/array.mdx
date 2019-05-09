@@ -1,0 +1,42 @@
+---
+name: Array / 数组
+route: /array
+---
+
+import { useState } from 'react';
+import { Playground } from 'docz'
+import { RemoveArrayItem } from '../src/array';
+import '../src/js-expansion';
+
+# Array
+
+## 删除数组的某一项
+
+<Playground>
+  {
+    () => {
+      const [arr, setState] = useState([1, 2, 3, 4]);
+      return (
+        <div>
+          <div>数组: {JSON.stringify(arr)}</div>
+          <hr />
+          <span className="btn theme mr10" onClick={e => {
+            setState(RemoveArrayItem(arr, 1))
+          }}>删除 1</span>
+          <span className="btn red" onClick={e => {
+            setState(arr.remove(1))
+          }}>使用 js 扩展删除 1</span>
+        </div>
+      )
+    }
+  }
+</Playground>
+
+```js
+import { RemoveArrayItem } from 'basic-helper/array';
+
+const array = [1, 2, 3, 4];
+const shouldRemoveItem = 1;
+
+const result = RemoveArrayItem(array, shouldRemoveItem);
+```

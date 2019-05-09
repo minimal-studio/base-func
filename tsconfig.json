@@ -2,13 +2,13 @@
   "compilerOptions": {
     "sourceMap": false,
     "noImplicitAny": true,
+    "outDir": "./dist",
     "module": "commonjs",
-    "target": "es2015",
-    "jsx": "react"
+    "target": "es2015"
   },
   "allowSyntheticDefaultImports": true,
   "esModuleInterop": true,
   "include": [
-    "./src/**/*"
+    "./ts/**/*"
   ]
 }

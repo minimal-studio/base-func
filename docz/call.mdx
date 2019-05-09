@@ -1,0 +1,48 @@
+---
+name: Call / 调用
+route: /call
+---
+
+import { useState } from 'react';
+import { Playground } from 'docz'
+import { GetFloatLen, SetFloatLen, ToFixed, ToggleBasicFloatLen } from '../src/number';
+
+# 函数调用
+
+basic-helper 提供统一的函数调用过滤器
+
+## 遇到的问题
+
+在程序运行的过程中，调用不确定的函数时，由于异步机制，遇到该函数尚未定义，则会导致调用错误，所以 basic-helper 提供了函数调用方式
+
+```js
+if(typeof func == 'function') func();
+```
+
+## Call
+
+Call 的第一个参数为目标函数，如果第一个参数为函数，则后面的参数将会传入第一个参数的回调
+
+```js
+import { Call } from 'basic-helper/call'
+
+function func(arg1, arg2) {
+  // ...
+}
+
+Call(func, arg1, arg2);
+```
+
+## CallFunc
+
+CallFunc 只接受一个参数，如果该参数为函数，则直接返回该函数，否则返回一个空函数
+
+```js
+import { CallFunc } from 'basic-helper/call'
+
+function func(arg1, arg2) {
+  // ...
+}
+
+CallFunc(func)(arg1, arg2);
+```

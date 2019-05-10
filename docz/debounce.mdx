@@ -1,0 +1,38 @@
+---
+name: Debounce / 防抖
+route: /debounce
+---
+
+import { useState } from 'react';
+import { Playground } from 'docz'
+import DebounceClass from '../src/debounce';
+
+# Debounce / 防抖
+
+为了避免在短时间内重复调用同一个函数而导致性能或其他不可控问题，basic-helper 提供函数防抖。
+
+## 使用
+
+<Playground>
+  {
+    () => {
+      const { exec } = new DebounceClass();
+      const [count, setCount] = useState(0);
+      const plus = () => {
+        setCount(count + 1);
+      };
+      return (
+        <div>
+          <div>点击次数: {count}</div>
+          <hr />
+          <span className="btn theme mr10" onClick={e => {
+            plus()
+          }}>点击 + 1</span>
+          <span className="btn red mr10" onClick={e => {
+            exec(plus, 1000);
+          }}>一秒之内的点击 + 1</span>
+        </div>
+      )
+    }
+  }
+</Playground>

@@ -1,0 +1,114 @@
+---
+name: Money / 金钱处理
+route: /money
+---
+
+import { useState } from 'react';
+import { Playground } from 'docz'
+import { GetBasicUnit, SetBasicUnit, ToBasicUnitMoney, MoneyFormat, UnitFormat } from '../src/money';
+
+# Money
+
+basic-helper 提供统一的金钱处理方式
+
+```js
+import { GetBasicUnit, SetBasicUnit, ToBasicUnitMoney, MoneyFormat, UnitFormat } from 'basic-helper/money';
+```
+
+## 基准单位 BASIC_UNIT
+
+为了统一金额的处理，并且以整数做计算，需要先统一的基准单位 `BASIC_UNIT`。
+
+```js
+const BASIC_UNIT = 1     -> 元
+                   10    -> 角
+                   100   -> 分
+                   1000  -> 厘
+                   10000 -> 毫
+
+```
+
+默认的 `BASIC_UNIT = 10000`，即 `const count = 1000000` == `100.0000 元`
+
+## 设置基准单位
+
+```js
+import { GetBasicUnit, SetBasicUnit } from 'basic-helper/money';
+
+SetBasicUnit(1); // 基准单位为 "元"
+const basicUnit = GetBasicUnit(); // basicUnit = 1
+```
+
+## 金钱格式化
+
+上述概念是为了方便计算，但不利于人类阅读，所以需要格式化成人类可读的格式
+
+1. 以元为单位
+2. 加入便于阅读的 , 分隔符
+3. 精确到指定浮点位数上
+
+<Playground>
+  {
+    () => {
+      const initMoney = 10000000;
+      const [originMoney, setOriginMoney] = useState(initMoney);
+      const [money, setMoney] = useState(MoneyFormat(originMoney));
+      return (
+        <div>
+          <div>原始单位金额: {originMoney}</div>
+          <div>格式化后金额: {money}</div>
+          <hr />
+          <input
+            className="form-control"
+            style={{width: 300}}
+            defaultValue={originMoney}
+            onChange={e => {
+              const val = e.target.value;
+              setMoney(MoneyFormat(val));
+              setOriginMoney(val);
+            }} />
+        </div>
+      )
+    }
+  }
+</Playground>
+
+## 反金钱格式化
+
+可以把元为单位的金钱数据转换成基准单位数据
+
+<Playground>
+  {
+    () => {
+      const initMoney = 10000000;
+      const [originMoney, setOriginMoney] = useState(MoneyFormat(initMoney));
+      const [money, setMoney] = useState(ToBasicUnitMoney(originMoney));
+      return (
+        <div>
+          <div>格式化金额: {originMoney}</div>
+          <div>基准单位数据: {money}</div>
+          <hr />
+          <input
+            className="form-control"
+            style={{width: 300}}
+            defaultValue={originMoney}
+            onChange={e => {
+              const val = e.target.value;
+              setMoney(ToBasicUnitMoney(val));
+              setOriginMoney(val);
+            }} />
+        </div>
+      )
+    }
+  }
+</Playground>
+
+## 单位格式化
+
+根据中文金钱单位的定义进行格式化
+
+```js
+import { UnitFormat } from 'basic-helper';
+
+const result = UnitFormat(1000, 'li'); // result = 1
+```

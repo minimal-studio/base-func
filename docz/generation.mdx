@@ -1,0 +1,79 @@
+---
+name: Generation / 数据产出
+route: /generation
+---
+
+import { useState } from 'react';
+import { Playground } from 'docz'
+import { UUID, WrapNumbPrefix, GenerateNumberRange, Random } from '../src/generation';
+
+# Generation / 数据产出
+
+basic-helper 提供一些常用的数据生成器
+
+## UUID
+
+由时间戳 + (1 ～ 10000的随机数)生成的 ID，可以应付一般的前端应用的随机唯一 ID 需求
+
+<Playground>
+  {
+    () => {
+      const [ID, setID] = useState(UUID());
+      return (
+        <div>
+          <div>ID: {ID}</div>
+          <hr />
+          <span className="btn theme mr10" onClick={e => {
+            setID(UUID())
+          }}>生成默认 9 位数的 ID</span>
+          <span className="btn red mr10" onClick={e => {
+            setID(UUID(5))
+          }}>生成 5 位数的 ID</span>
+        </div>
+      )
+    }
+  }
+</Playground>
+
+## 为 < 10 数字添加 0 前缀
+
+<Playground>
+  {
+    () => {
+      const [numb, setState] = useState(WrapNumbPrefix(1, true));
+      return (
+        <div>
+          <div>numb: {numb}</div>
+          <hr />
+          <input
+            className="form-control"
+            style={{width: 300}}
+            onChange={e => {
+              const val = e.target.value;
+              setState(WrapNumbPrefix(val, true));
+            }} />
+        </div>
+      )
+    }
+  }
+</Playground>
+
+## 生成指定范围之内的随机数
+
+<Playground>
+  {
+    () => {
+      const range = [1, 11];
+      const [numb, setState] = useState(Random(range));
+      return (
+        <div>
+          <div>生成范围 {JSON.stringify(range)} 之内的随机数: {numb}</div>
+          <hr />
+          <span className="btn theme mr10" onClick={e => {
+            setState(Random(range))
+          }}>生成随机数</span>
+        </div>
+      )
+    }
+  }
+</Playground>

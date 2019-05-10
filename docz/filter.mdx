@@ -1,0 +1,188 @@
+---
+name: Filter / 过滤器
+route: /filter
+---
+
+import { useState } from 'react';
+import { Playground } from 'docz'
+import {
+  StripScript, IsUrl, IsFunc, IsObj, IsEmail, IsPhone, InArr, HasValue
+} from '../src/filter';
+
+# Filter / 过滤器
+
+basic-helper 提供了一些常用的数据过滤器
+
+```js
+import {
+  StripScript, IsUrl, IsFunc, IsObj, IsEmail, IsPhone, InArr, HasValue
+} from 'basic-helper/filter';
+```
+
+## 过滤 script 标签
+
+<Playground>
+  {
+    () => {
+      const scriptStr = '<span>其他内容</span><script>alert("script 标签")</script>'
+      const [content, setContent] = useState(scriptStr);
+      return (
+        <div>
+          <div>内容: {content}</div>
+          <hr />
+          <span className="btn theme mr10" onClick={e => {
+            console.log(StripScript(content))
+            setContent(StripScript(content))
+          }}>过滤 script</span>
+        </div>
+      )
+    }
+  }
+</Playground>
+
+## IsUrl
+
+<Playground>
+  {
+    () => {
+      const url = 'https://www.google.com'
+      const [isUrl, setCondition] = useState(IsUrl(url));
+      return (
+        <div>
+          <div>是否 url: {isUrl + ''}</div>
+          <hr />
+          <input
+            className="form-control"
+            style={{width: 300}}
+            defaultValue={url}
+            onChange={e => {
+              const val = e.target.value;
+              setCondition(IsUrl(val));
+            }} />
+        </div>
+      )
+    }
+  }
+</Playground>
+
+## IsEmail
+
+<Playground>
+  {
+    () => {
+      const email = 'test@gmail.com'
+      const [isEmail, setCondition] = useState(IsEmail(email));
+      return (
+        <div>
+          <div>是否 email: {isEmail + ''}</div>
+          <hr />
+          <input
+            className="form-control"
+            style={{width: 300}}
+            defaultValue={email}
+            onChange={e => {
+              const val = e.target.value;
+              setCondition(IsEmail(val));
+            }} />
+        </div>
+      )
+    }
+  }
+</Playground>
+
+## IsPhone
+
+<Playground>
+  {
+    () => {
+      const phone = '13344445555'
+      const [isExpected, setCondition] = useState(IsPhone(phone));
+      return (
+        <div>
+          <div>是否 phone: {isExpected + ''}</div>
+          <hr />
+          <input
+            className="form-control"
+            style={{width: 300}}
+            defaultValue={phone}
+            onChange={e => {
+              const val = e.target.value;
+              setCondition(IsPhone(val));
+            }} />
+        </div>
+      )
+    }
+  }
+</Playground>
+
+## InArr
+
+元素是否在目标数组中
+
+<Playground>
+  {
+    () => {
+      const target = ['a', 'b', 'c', 'd', 'e', 'f']
+      const [isExpected, setCondition] = useState(false);
+      return (
+        <div>
+          <div>是否在元素 {JSON.stringify(target)} 中: {isExpected + ''}</div>
+          <hr />
+          输入数组中的元素验证 <input
+            className="form-control"
+            style={{width: 300}}
+            onChange={e => {
+              const val = e.target.value;
+              setCondition(InArr(target, val));
+            }} />
+        </div>
+      )
+    }
+  }
+</Playground>
+
+## HasValue
+
+检测目标是否为有效值（包含 0）
+
+<Playground>
+  {
+    () => {
+      const target = 0
+      const [isExpected, setCondition] = useState(false);
+      return (
+        <div>
+          <div>是否有效值: {isExpected + ''}</div>
+          <hr />
+          <input
+            className="form-control"
+            style={{width: 300}}
+            onChange={e => {
+              const val = e.target.value;
+              setCondition(HasValue(val));
+            }} />
+        </div>
+      )
+    }
+  }
+</Playground>
+
+## IsFunc
+
+```js
+import { IsFunc } from 'basic-helper/filter'
+
+let func = () => {};
+
+IsFunc(func)
+```
+
+## IsObj
+
+```js
+import { IsObj } from 'basic-helper/filter'
+
+let func = {};
+
+IsObj(func)
+```

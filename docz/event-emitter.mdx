@@ -1,0 +1,77 @@
+---
+name: EventEmitter / 订阅发布
+route: /EventEmitter
+---
+
+import { useState } from 'react';
+import { Playground } from 'docz'
+import { EventEmitter } from '../src';
+
+# EventEmitter / 订阅发布
+
+basic-helper 提供订阅发布机制，用于取代需要依赖 `document` 的 `CustomEvent`
+
+## 使用
+
+可以在任意位置使用
+
+```js
+import { EventEmitter } from 'basic-helper';
+
+const handleEvent = (emittedData) => {
+  console.log(emittedData)
+}
+
+EventEmitter.on('EVENT_NAME', handleEvent);
+
+EventEmitter.emit('EVENT_NAME', {
+  state: 'success'
+});
+```
+
+## 构造新实例
+
+可以构造一个全新的订阅发布对象
+
+```js
+import { EventEmitterClass } from 'basic-helper';
+
+const EventEmitter = new EventEmitterClass();
+
+const handleEvent = (emittedData) => {
+  console.log(emittedData)
+}
+
+EventEmitter.on('EVENT_NAME', handleEvent);
+
+EventEmitter.emit('EVENT_NAME', {
+  state: 'success'
+});
+```
+
+## 继承扩展
+
+通过继承 EventEmitterClass，获取订阅发布能力。以下为异步请求类的封装
+
+```js
+import { EventEmitterClass } from 'basic-helper';
+
+class Request extends EventEmitterClass {
+  constructor() {
+    super();
+  }
+  post() {
+    fetch('url')
+      .then(res => res.json())
+      .then(res => {
+        this.emit('onPostRes')
+      })
+  }
+}
+
+const $R = new Request();
+
+const handlePostRes = () => { /* ... */ };
+$R.on('onPostRes', handlePostRes); // 可以轻松在任意地方做 post 的 hook
+$R.post();
+```

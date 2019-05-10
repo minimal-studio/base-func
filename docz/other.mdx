@@ -1,0 +1,48 @@
+---
+name: Other / 其他
+route: /other
+---
+
+import { useState } from 'react';
+import { Playground } from 'docz'
+import Storage from '../src/storage'
+
+import RegisteMD from '../docs/registe.md';
+import StorageMD from '../docs/storage.md';
+
+# Other
+
+> basic-helper 提供了其他的辅助函数，但这些辅助函数并不包含在 basic-helper 的默认导出中，需要指定引入
+
+<RegisteMD />
+
+## Storage
+
+<Playground>
+  {
+    () => {
+      let inputRef;
+      const storageRef = 'FOR_TEST';
+      const initStorage = Storage.getItem(storageRef);
+      const [content, setState] = useState(initStorage);
+      return (
+        <div>
+          <div>本地存储内容: {content + ''}</div>
+          <hr />
+          <input
+            className="form-control"
+            ref={e => inputRef = e}
+            style={{width: 300}}
+            defaultValue={content} />
+          <span className="btn theme mr10" onClick={e => {
+            setState(inputRef.value);
+            Storage.setItem(storageRef, inputRef.value);
+          }}>存储到本地</span>
+          <span className="btn red mr10" onClick={e => {
+            Storage.setItem(storageRef, inputRef.value);
+          }}>获取储存的数据</span>
+        </div>
+      )
+    }
+  }
+</Playground>

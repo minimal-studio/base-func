@@ -6,7 +6,6 @@ route: /array
 import { useState } from 'react';
 import { Playground } from 'docz'
 import { RemoveArrayItem } from '../src/array';
-import '../src/js-expansion';
 
 # Array
 
@@ -15,7 +14,8 @@ import '../src/js-expansion';
 <Playground>
   {
     () => {
-      const [arr, setState] = useState([1, 2, 3, 4]);
+      const array = [1, 2, 3, 4];
+      const [arr, setState] = useState(array);
       return (
         <div>
           <div>数组: {JSON.stringify(arr)}</div>
@@ -23,20 +23,37 @@ import '../src/js-expansion';
           <span className="btn theme mr10" onClick={e => {
             setState(RemoveArrayItem(arr, 1))
           }}>删除 1</span>
-          <span className="btn red" onClick={e => {
+          <span className="btn red mr10" onClick={e => {
             setState(arr.remove(1))
           }}>使用 js 扩展删除 1</span>
+          <span className="btn green" onClick={e => {
+            setState(array)
+          }}>重置</span>
         </div>
       )
     }
   }
 </Playground>
 
-```js
-import { RemoveArrayItem } from 'basic-helper/array';
+## 数组去重
 
-const array = [1, 2, 3, 4];
-const shouldRemoveItem = 1;
-
-const result = RemoveArrayItem(array, shouldRemoveItem);
-```
+<Playground>
+  {
+    () => {
+      const array = ['a', 'a', 'b', 'c', 'd', 'e', 'e', 'e'];
+      const [arr, setState] = useState(array);
+      return (
+        <div>
+          <div>数组: {JSON.stringify(arr)}</div>
+          <hr />
+          <span className="btn theme mr10" onClick={e => {
+            setState(arr.deduplication());
+          }}>去重</span>
+          <span className="btn red" onClick={e => {
+            setState(array)
+          }}>重置</span>
+        </div>
+      )
+    }
+  }
+</Playground>

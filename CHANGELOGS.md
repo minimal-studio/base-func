@@ -43,7 +43,6 @@ import { SetBasicUnit, GetBasicUnit, ToBasicUnitMoney, MoneyFormat, UnitFormat }
 import { GetFloatLen, SetFloatLen, ToFixed, ToggleBasicFloatLen } from 'basic-helper/number';
 import numTransformToCN from 'basic-helper/num-to-cn';
 import Storage from 'basic-helper/storage';
-import 'basic-helper/js-expansion';
 ```
 
 ### 废弃接口

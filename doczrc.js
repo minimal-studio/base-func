@@ -31,9 +31,7 @@ export default {
     'EventEmitter / 订阅发布',
     'Filter / 过滤器',
     'Generation / 数据产出',
-    'js-expansion / 原生扩展',
-    'Money / 金钱扩展',
-    'Cookies / 缓存',
+    'Money / 金钱处理',
     'Other / 其他',
   ],
   // modifyBundlerConfig: (config) => {

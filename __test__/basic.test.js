@@ -5,7 +5,7 @@ import {
   HasValue, 
   GenerateNumberRange, WrapNumbPrefix,
   CallFunc, UUID, Random, InArr,
-  UnitFormat, DateParseHook, 
+  UnitFormat, 
   RemoveArrayItem
 } from '../src';
 
@@ -42,5 +42,36 @@ describe('Test functional functions', () => {
   });
   test('HasValue', () => {
     expect(HasValue(0)).toBe(true);
+  });
+  test('IsFunc', () => {
+    const fn = () => {};
+    const fakeFn = '() => {}';
+    expect(IsFunc(fn)).toBe(true);
+    expect(IsFunc(fakeFn)).toBe(false);
+  });
+  test('IsObj', () => {
+    const obj = {};
+    const fakeObj = '() => {}';
+    expect(IsObj(obj)).toBe(true);
+    expect(IsObj(fakeObj)).toBe(false);
+  });
+  test('IsEmail', () => {
+    const email = 'test@gmail.com';
+    const fake = '123qwe';
+    expect(IsEmail(email)).toBe(true);
+    expect(IsEmail(fake)).toBe(false);
+  });
+  test('IsPhoneNumber', () => {
+    const phone = '13344445555';
+    const fake = '133131313';
+    expect(IsPhoneNumber(phone)).toBe(true);
+    expect(IsPhoneNumber(fake)).toBe(false);
+  });
+  test('WrapNumbPrefix', () => {
+    expect(WrapNumbPrefix(2, true)).toMatch('02');
+    expect(WrapNumbPrefix(10, true)).toBe('10');
+  });
+  test('UUID length', () => {
+    expect(UUID(5).length).toBe(5);
   });
 });

@@ -39,7 +39,6 @@ import {
 import { UUID, WrapNumbPrefix, GenerateNumberRange, Random } from 'basic-helper/generation';
 import { SetBasicUnit, GetBasicUnit, ToBasicUnitMoney, MoneyFormat, UnitFormat } from 'basic-helper/money';
 import { GetFloatLen, SetFloatLen, ToFixed, ToggleBasicFloatLen } from 'basic-helper/number';
-import 'basic-helper/js-expansion';
 
 // 需要指定引入
 import cookies from 'basic-helper/cookies';

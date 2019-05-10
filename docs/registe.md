@@ -1,16 +1,12 @@
-# 注册全局引用
-
-## 作用域 scope
+## 注册全局引用
 
 - 通过 *defineGlobalScope* 定义全局作用域
 - 已定义的作用域，只能通过特定的接口 *registe* 来覆盖之前的定义
 - 作用域挂载在 *window* 或者 *global* 下
 - 作用于命名建议使用 *$* 前缀，并且全大写的英文
 
-### 例如
-
 ```js
-import {defineGlobalScope} from 'basic-helper';
+import { defineGlobalScope } from 'basic-helper/registe-global-funcs';
 
 const GlobalObj = {
   test: () => {

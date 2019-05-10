@@ -46,6 +46,7 @@ export function GetBasicUnit() {
  * @return {number}
  */
 export function ToBasicUnitMoney(money) {
+  money = (money + '').replace(/,/g, '');
   money = +money;
   if (typeof money !== 'number') return money || '';
   return ToFixed(money * basicUnit, GetFloatLen());
@@ -83,7 +84,8 @@ export function UnitFormat(cost = 0, unit = 'yuan') {
     yuan: 1,
     jiao: 10,
     fen: 100,
-    li: 1000
+    li: 1000,
+    hao: 10000,
   };
   return ToFixed(cost / UNITS[unit]);
 }

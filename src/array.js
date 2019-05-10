@@ -12,3 +12,22 @@ export function RemoveArrayItem(arr, item) {
   }
   return nextArr;
 }
+
+/**
+ * 拓展 Array 功能，实现数组去重
+ */
+Array.prototype.deduplication = function() {
+  let arr = this;
+  let deduplicationObj = {};
+  for (let i = 0; i < arr.length; i++) {
+    let currItem = arr[i];
+    if (!deduplicationObj.hasOwnProperty(currItem)) {
+      deduplicationObj[currItem] = null;
+    }
+  }
+  return Object.keys(deduplicationObj);
+};
+
+Array.prototype.remove = function (targetItem) {
+  return RemoveArrayItem(this, targetItem);
+};

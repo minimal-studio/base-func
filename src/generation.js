@@ -1,11 +1,12 @@
+import { ToFixed } from './number';
+
 /**
  * 生成唯一ID
  * @return {string}
  */
-export function UUID() {
+export function UUID(idLen = 9) {
   const max = 10000;
   const min = 1;
-  const idLen = 9;
   const originID = (Date.now() + '' + (Math.floor(Math.random() * (max - min + 1) + min)));
   let newID = originID.split('').reverse();
   let result = newID.slice(0, idLen).join('');
@@ -53,9 +54,10 @@ export function GenerateNumberRange(numberRange) {
  * 根据传入的随机数范围生成随机数
  *
  * @param {array} [numberRange=[start, end]] 期望随机数的范围
+ * @param {number} [floatLen=0] 随机数的浮点位数
  * @return {number}
  */
-export function Random(numberRange) {
+export function Random(numberRange, floatLen = 0) {
   let [start, end] = numberRange;
-  return Math.floor(Math.random() * (end + 1)) + start;
+  return ToFixed((Math.random() * end) + start, floatLen);
 }

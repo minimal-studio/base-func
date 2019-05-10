@@ -77,4 +77,8 @@ class EventEmitterClass {
     }
   }
 }
+
+const EventEmitter = new EventEmitterClass();
+
+export { EventEmitter };
 export default EventEmitterClass;

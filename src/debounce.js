@@ -19,7 +19,7 @@ class DebounceClass {
       this.delay = delay;
     }
   }
-  exec(fn, delay = 100) {
+  exec = (fn, delay = 100) => {
     if(IsFunc(fn)) {
       this.callback = fn;
       this.delay = delay;
@@ -27,7 +27,7 @@ class DebounceClass {
     this._clearTimer();
     this._exec();
   }
-  _exec() {
+  _exec = () => {
     const {callback, delay} = this;
     this.timer = setTimeout(callback, delay);
   }

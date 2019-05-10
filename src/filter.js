@@ -4,8 +4,9 @@
  * @param {string} s 目标字符串
  * @return {string} 过滤后的字符串
  */
+const scriptReg = /<?script.*?>.*?<\/script>/ig;
 export function StripScript(s) {
-  return s.replace(/<script.*?>.*?<\/script>/ig, '');
+  return s.replace(scriptReg, '');
 }
 
 /**

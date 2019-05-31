@@ -1,9 +1,9 @@
 # Basic Helper
 
+basic-helper 是一个语义化辅助函数库，提供一些基础通用的数据处理函数。
+
 [![Build Status](https://travis-ci.com/SANGET/basic-helper-js.svg?branch=master)](https://travis-ci.com/SANGET/basic-helper-js)
 [![install size](https://packagephobia.now.sh/badge?p=basic-helper)](https://packagephobia.now.sh/result?p=basic-helper)
-
-basic-helper 是一个语义化辅助函数库，提供一些基础通用的数据处理函数。
 
 ## 安装
 

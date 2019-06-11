@@ -5,14 +5,14 @@ import { RemoveArrayItem } from './array';
 
 /**
  * 订阅发布模块
- * 
+ *
  * @example
  * // 使用 basic helper 提供的内置全局 EventEmitter 对象
  * import { EventEmitter } from 'basic-helper';
- * 
+ *
  * // 或者自定义一个全新的对象
  * const _EventEmitter = new EventEmitterClass();
- * 
+ *
  * const callback = () => {};
  *
  * // 订阅: on, 参数说明 (eventName, callback, execTime)
@@ -31,45 +31,60 @@ import { RemoveArrayItem } from './array';
  * EventEmitter.rm('LOGIN_SUCCESS', callback);
  */
 
+export type SubscriptFunction = Function;
+
+export interface SubscribeList {
+  [SubscribeItemName: string]: SubscriptFunction[];
+}
+
 class EventEmitterClass {
+  subscribeList!: SubscribeList;
+
   constructor() {
     this.subscribeList = {};
   }
-  on() {
-    this.subscribe.apply(this, arguments);
-  }
-  rm() {
-    this.unsubscribe.apply(this, arguments);
-  }
-  once() {
-    this.subscribe.apply(this, [...arguments, 1]);
-  }
-  checkFuncIsExist(eventName, func) {
-    return this.subscribeList[eventName].indexOf(func) != -1;
-  }
-  subscribe(eventName, func, execTime = 0) {
-    if(!func) return console.warn('func is required');
 
-    let subObj = this.subscribeList[eventName];
-    if(!subObj) this.subscribeList[eventName] = [];
+  on(...args: any[]) {
+    this.subscribe.apply(this, [...args]);
+  }
+
+  rm(...args: any[]) {
+    this.unsubscribe.apply(this, [...args]);
+  }
+
+  once(...args: any[]) {
+    this.subscribe.apply(this, [...args, 1]);
+  }
+
+  checkFuncIsExist(eventName: string, func: Function) {
+    return this.subscribeList[eventName].indexOf(func) !== -1;
+  }
+
+  subscribe(eventName: string, func: Function, execTime = 0): void {
+    if (!func) return console.warn('func is required');
+
+    const subObj = this.subscribeList[eventName];
+    if (!subObj) this.subscribeList[eventName] = [];
     Object.assign(func, {
       execTime, executed: 0
     });
     this.subscribeList[eventName].push(func);
   }
-  unsubscribe(eventName, func) {
-    if(!this.subscribeList[eventName]) return;
-    if(this.checkFuncIsExist(eventName, func)) {
+
+  unsubscribe(eventName: string, func: Function) {
+    if (!this.subscribeList[eventName]) return;
+    if (this.checkFuncIsExist(eventName, func)) {
       this.subscribeList[eventName] = RemoveArrayItem(this.subscribeList[eventName], func);
     }
   }
-  emit(eventName, emitObj) {
-    let currSubList = this.subscribeList[eventName] || [];
-    for (var i = 0; i < currSubList.length; i++) {
-      if(IsFunc(currSubList[i])) {
+
+  emit(eventName: string, emitObj: any) {
+    const currSubList = this.subscribeList[eventName] || [];
+    for (let i = 0; i < currSubList.length; i++) {
+      if (IsFunc(currSubList[i])) {
         currSubList[i].executed += 1;
-        let { execTime, executed } = currSubList[i];
-        if(execTime !== 0 && executed === execTime) {
+        const { execTime, executed } = currSubList[i];
+        if (execTime !== 0 && executed === execTime) {
           this.unsubscribe(eventName, currSubList[i]);
         }
       }

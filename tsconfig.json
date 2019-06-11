@@ -3,6 +3,7 @@
     "sourceMap": false,
     "noImplicitAny": true,
     "outDir": "./dist",
+    "declaration": true,
     "module": "commonjs",
     "target": "es2015"
   },

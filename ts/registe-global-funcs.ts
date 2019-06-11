@@ -1,0 +1,66 @@
+/**
+ * 作者: Alex
+ * 注册全局可用的基础的 Helper 方法
+ */
+
+import NumTransformToCN from './num-to-cn';
+// import { DateRange, GetDefaultDateInfo, DateFormat, TimeFormat } from './datetime-helper';
+import * as GlobabHelper from '.';
+import EventEmitterClass from './event-emitter';
+import DebounceClass from './debounce';
+
+export const EventEmitter = new EventEmitterClass();
+
+/**
+* 注册一个 $GH 的全局对象 (Global Helper)
+*/
+export const GlobalHelper = Object.assign({}, GlobabHelper, {
+  // DateRange,
+  // GetDefaultDateInfo,
+  // TimeFormat,
+  // DateFormat,
+  NumTransformToCN,
+  Debounce: DebounceClass,
+  EventEmitterClass,
+  EventEmitter,
+});
+
+const GlobalObjectMapper = {};
+export function defineGlobalObj(name, obj) {
+  return console.warn('defineGlobalObj has been rename to defineGlobalScope');
+}
+export function defineGlobalScope(name, obj) {
+  const nameMark = `__IsSet${name}`;
+  if (!window || window[nameMark]) return;
+
+  GlobalObjectMapper[name] = obj;
+
+  Object.assign(GlobalObjectMapper[name], {
+    registe: (registeObj) => {
+      Object.assign(GlobalObjectMapper[name], registeObj);
+    }
+  });
+
+  Object.defineProperties(window, {
+    [name]: {
+      get() {
+        return Object.assign({}, GlobalObjectMapper[name]);
+      },
+      enumerable: true,
+      configurable: false,
+      // writable: false
+    },
+    [nameMark]: {
+      value: true,
+      writable: false
+    }
+  });
+}
+
+defineGlobalScope('$GH', GlobalHelper);
+
+export {
+  EventEmitterClass, DebounceClass,
+  // GetDefaultDateInfo, DateFormat, TimeFormat,
+  NumTransformToCN
+};

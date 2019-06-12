@@ -2,12 +2,12 @@ import {
   ToFixed,
   MoneyFormat, GetBasicUnit, GetFloatLen, ToBasicUnitMoney,
   StripScript, IsUrl, IsFunc, IsObj, IsEmail, IsPhoneNumber,
-  HasValue, 
+  HasValue,
   GenerateNumberRange, WrapNumbPrefix,
   CallFunc, UUID, Random, InArr,
-  UnitFormat, 
+  UnitFormat,
   RemoveArrayItem
-} from '../src';
+} from '../ts';
 
 test('ToFixed 10.1111 to 10.11', () => {
   expect(ToFixed(10.1111, 2)).toBe(10.11);
@@ -23,7 +23,7 @@ describe('Test MoneyFormat', () => {
     expect(MoneyFormat(money * basicUnit, GetFloatLen(), basicUnit)).toMatch('100,000.0000');
   });
   test('MoneyFormat: -100000, basicUnit 10000, floatLen 4 to -100,000.0000', () => {
-    expect(MoneyFormat(- money * basicUnit, GetFloatLen(), basicUnit)).toMatch('-100,000.0000');
+    expect(MoneyFormat(-money * basicUnit, GetFloatLen(), basicUnit)).toMatch('-100,000.0000');
   });
   test('MoneyFormat: 100000 * 10000 with toFixed(2) to 100,000.00', () => {
     expect(MoneyFormat(money * basicUnit, 2)).toMatch('100,000.00');

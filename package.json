@@ -11,6 +11,7 @@
     "build:ts": "rm -rf ./dist; tsc; npm run build:copy-files-ts",
     "build:babel": "NODE_ENV=production babel ./src --out-dir ./build --ignore spec.js",
     "build:copy-files": "NODE_ENV=production babel-node ./scripts/copy-files.js",
+    "build:copy-files-ts": "NODE_ENV=production babel-node ./scripts/copy-files-ts.js",
     "docz:dev": "docz dev",
     "docz:build": "NODE_ENV=production docz build",
     "test": "jest"

@@ -1,5 +1,20 @@
 # ChangeLogs of Basic Helper
 
+## v3.0.0
+
+### 新特性
+
+- 全面支持 typescript，优化开发体验
+
+### 旧接口移除
+
+- DateParseHook
+- GetDefaultDateInfo
+- GenerteID
+- Cookies
+
+---------
+
 ## v2.0.0
 
 ### 重构项目

@@ -41,7 +41,6 @@ import { SetBasicUnit, GetBasicUnit, ToBasicUnitMoney, MoneyFormat, UnitFormat }
 import { GetFloatLen, SetFloatLen, ToFixed, ToggleBasicFloatLen } from 'basic-helper/number';
 
 // 需要指定引入
-import cookies from 'basic-helper/cookies';
 import Storage from 'basic-helper/storage';
 import numTransformToCN from 'basic-helper/num-to-cn';
 ```

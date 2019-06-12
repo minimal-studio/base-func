@@ -5,7 +5,7 @@ route: /number
 
 import { useState } from 'react';
 import { Playground } from 'docz'
-import { GetFloatLen, SetFloatLen, ToFixed, ToggleBasicFloatLen } from '../src/number';
+import { GetFloatLen, SetFloatLen, ToFixed, ToggleBasicFloatLen } from '../ts/number';
 
 # Number
 
@@ -17,7 +17,7 @@ basic-helper 提供统一处理 js 的数字、浮点数的方式，默认长度
 ## 获取基准浮点位数
 
 ```js
-import { GetFloatLen } from '../src/number';
+import { GetFloatLen } from 'basic-helper/number';
 
 GetFloatLen();
 ```
@@ -25,7 +25,7 @@ GetFloatLen();
 ## 设置基准浮点位数
 
 ```js
-import { SetFloatLen } from '../src/number';
+import { SetFloatLen } from 'basic-helper/number';
 
 let len = 1;
 
@@ -35,7 +35,7 @@ SetFloatLen(len);
 ## 数字剪切和浮点数开关
 
 ```js
-import { ToFixed, ToggleBasicFloatLen } from '../src/number';
+import { ToFixed, ToggleBasicFloatLen } from 'basic-helper/number';
 
 let res = 2 / 3;
 

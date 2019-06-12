@@ -3,6 +3,18 @@ import { CallFunc } from './call';
 import { IsFunc } from './filter';
 import { RemoveArrayItem } from './array';
 
+
+interface SubscriptFunction extends Function {
+  /** 执行的次数 */
+  execTime?: number;
+  /** 已执行的次数 */
+  executed?: number;
+}
+
+export interface SubscribeList {
+  [SubscribeEventName: string]: SubscriptFunction[];
+}
+
 /**
  * 订阅发布模块
  *
@@ -30,13 +42,6 @@ import { RemoveArrayItem } from './array';
  * // 删除订阅的事件
  * EventEmitter.rm('LOGIN_SUCCESS', callback);
  */
-
-export type SubscriptFunction = Function;
-
-export interface SubscribeList {
-  [SubscribeItemName: string]: SubscriptFunction[];
-}
-
 class EventEmitterClass {
   subscribeList!: SubscribeList;
 
@@ -69,12 +74,13 @@ class EventEmitterClass {
       execTime, executed: 0
     });
     this.subscribeList[eventName].push(func);
+    return null;
   }
 
   unsubscribe(eventName: string, func: Function) {
     if (!this.subscribeList[eventName]) return;
     if (this.checkFuncIsExist(eventName, func)) {
-      this.subscribeList[eventName] = RemoveArrayItem(this.subscribeList[eventName], func);
+      this.subscribeList[eventName].remove(func);
     }
   }
 

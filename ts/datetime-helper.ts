@@ -23,6 +23,15 @@ function wrapTimePrefix(timeNum: number): string {
 function isValidDate(dateObj: any): boolean {
   return dateObj && !Number.isNaN(dateObj.getTime());
 }
+type DateTimeArr = 'YYYY' | 'MM' | 'DD' | 'hh' | 'mm' | 'ss';
+interface DateTimeObj {
+  YYYY: string;
+  MM: string;
+  DD: string;
+  hh: string;
+  mm: string;
+  ss: string;
+}
 
 /**
  * 格式化日期和时间，获取特定的时间范围
@@ -49,15 +58,17 @@ export function DateFormat(date: DateFormatDate, format = "YYYY-MM-DD"): string 
   const hh = wrapTimePrefix(dateObj.getHours());
   const mm = wrapTimePrefix(dateObj.getMinutes());
   const ss = wrapTimePrefix(dateObj.getSeconds());
-  const timeObj = {
+  const timeObj: DateTimeObj = {
     YYYY, MM, DD, hh, mm, ss
   };
   const resultFormat: string[] = [];
-  Object.keys(timeObj).forEach((key) => {
-    format.replace(key, (_match, offset: any) => {
-      const _offset = hasSeparator ? format.charAt(offset - 1) : '';
-      resultFormat.push(_offset + timeObj[key].toString());
-    });
+  const replacer = (key: DateTimeArr) => (_match: string, offset: number) => {
+    const _offset = hasSeparator ? format.charAt(offset - 1) : '';
+    resultFormat.push(_offset + timeObj[key].toString());
+    return _match;
+  };
+  Object.keys(timeObj).forEach((key: DateTimeArr) => {
+    format.replace(key, replacer(key));
   });
   // format
   return resultFormat.join('');

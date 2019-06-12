@@ -11,14 +11,12 @@ let floatLen = BASIC_FLOAT_LEN;
 /**
  * 用于是否显示做浮点数开关
  */
-let floatStore = [floatLen, 0];
+let floatStore: number[] = [floatLen, 0];
 
 /**
  * 获取 floatLen
- *
- * @return {number}
  */
-export function GetFloatLen() {
+export function GetFloatLen(): number {
   return floatLen;
 }
 
@@ -26,12 +24,11 @@ export function GetFloatLen() {
  * 设置 floatLen
  *
  * @param {number} len 长度
- * @return {void}
  */
-export function SetFloatLen(len) {
-  const _len = parseInt(len);
+export function SetFloatLen(len: number | string): void {
+  const _len = +(len);
   if (!_len || _len < 0 || _len > 5) return;
-  floatLen = len;
+  floatLen = _len;
   floatStore = [floatLen, 0];
 }
 
@@ -40,9 +37,10 @@ export function SetFloatLen(len) {
  *
  * @return {boolean} 是否隐藏了小数点
  */
-export function ToggleBasicFloatLen() {
+export function ToggleBasicFloatLen(): boolean {
   floatStore.reverse();
-  floatLen = floatStore[0];
+  const [nextFlotLen] = floatStore;
+  floatLen = nextFlotLen;
   const isDisplay = floatLen !== 0;
   return isDisplay;
 }
@@ -52,16 +50,19 @@ export function ToggleBasicFloatLen() {
  *
  * @param {number | string} targetNumber 目标数字
  * @param {number} [limit=GetFloatLen()] 小数点后的长度
- * @param {boolean} [isStr=false] 是否返回字符串
- * @return {number | string} 根据 isStr 返回调整过后的数字或者字符串
+ * @param {boolean} [returnAsStr=false] 是否返回字符串
+ * @return {number | string} 根据 returnAsStr 返回调整过后的数字或者字符串
  */
-export function ToFixed(targetNumber, limit = GetFloatLen(), isStr = false) {
-  let numb = +targetNumber || 0;
-  const numbStr = isStr ? numb.toFixed(6) : numb.toString();
+export function ToFixed(
+  targetNumber: number | string, limit = GetFloatLen(), returnAsStr = false
+): number | string {
+  const numb = +targetNumber || 0;
+  const numbStr = returnAsStr ? numb.toFixed(6) : numb.toString();
+  let numbStrRes: string;
   let [_int, _float] = numbStr.split('.');
   if (_float) {
     _float = _float.substr(0, limit);
-    numb = `${_int}.${_float}`;
+    numbStrRes = `${_int}.${_float}`;
   }
-  return isStr ? numb : +numb;
+  return returnAsStr ? numbStrRes : +numb;
 }

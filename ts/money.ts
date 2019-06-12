@@ -1,4 +1,7 @@
+import { tuple } from './utils/type';
 import { GetFloatLen, ToFixed } from './number';
+
+type BASIC_UNIT_TYPE = number;
 
 /**
  * 默认的金额格式化时的基准单位，应用于 MoneyFormat()，默认为毫 10000
@@ -8,7 +11,7 @@ import { GetFloatLen, ToFixed } from './number';
  * 1000 厘
  * 10000 毫
  */
-const BASIC_UNIT = 10000;
+const BASIC_UNIT: BASIC_UNIT_TYPE = 10000;
 
 /**
  * 金额格式化时的基准单位，应用于 MoneyFormat()，默认为毫 10000
@@ -18,24 +21,23 @@ const BASIC_UNIT = 10000;
  * 1000 厘
  * 10000 毫
  */
-let basicUnit = BASIC_UNIT;
+let basicUnit: BASIC_UNIT_TYPE = BASIC_UNIT;
 
 /**
  * 设置 basicUnit
  *
  * @param {number} unit 基准单位
- * @return {void}
  */
-export function SetBasicUnit(unit) {
+export function SetBasicUnit(unit: BASIC_UNIT_TYPE) {
   basicUnit = unit;
 }
 
 /**
  * 获取 basicUnit
  *
- * @return {number}
+ * @return {BASIC_UNIT_TYPE}
  */
-export function GetBasicUnit() {
+export function GetBasicUnit(): BASIC_UNIT_TYPE {
   return basicUnit;
 }
 
@@ -43,13 +45,13 @@ export function GetBasicUnit() {
  * 把数字转化成以 basicUnit 为基准的整数
  *
  * @param {number} money 目标数字
- * @return {number}
+ * @return {number | null}
  */
-export function ToBasicUnitMoney(money) {
-  money = (`${money}`).replace(/,/g, '');
-  money = +money;
-  if (typeof money !== 'number') return money || '';
-  return ToFixed(money * basicUnit, GetFloatLen());
+export function ToBasicUnitMoney(money: number): number | null {
+  let _money = money;
+  _money = +(_money.toString().replace(/,/g, ''));
+  if (typeof _money !== 'number') return _money || null;
+  return +(ToFixed(_money * basicUnit, GetFloatLen()));
 }
 
 /**
@@ -60,26 +62,32 @@ export function ToBasicUnitMoney(money) {
  * @param {number} [_basicUnit=basicUnit] 基础单位
  * @return {string}
  */
-export function MoneyFormat(money, logMark = GetFloatLen(), _basicUnit = basicUnit) {
-  money = +money;
-  if (typeof money !== 'number') return money || '';
-  const isNegNum = money < 0;
-  const moneyYuan = +(money / _basicUnit) || 0;
-  let [moneyInt, moneyFloor] = ToFixed(moneyYuan * 1, logMark, true).toString().split('.');
-  moneyInt = Math.abs(moneyInt);
-  moneyInt = moneyInt.toLocaleString('en-US');
-  if (moneyFloor) moneyInt += `.${moneyFloor}`;
-  return isNegNum ? `-${moneyInt}` : moneyInt;
+export function MoneyFormat(
+  money: number | string, logMark = GetFloatLen(), _basicUnit = basicUnit
+): string {
+  const moneyNum = +money;
+  // money = +money;
+  if (typeof moneyNum !== 'number') return moneyNum || '';
+  const isNegNum = moneyNum < 0;
+  const moneyYuan = +(moneyNum / _basicUnit) || 0;
+  const [_moneyInt, moneyFloor] = ToFixed(moneyYuan * 1, logMark, true).toString().split('.');
+  const moneyInt = Math.abs(+_moneyInt);
+  let moneyIntStr = moneyInt.toLocaleString('en-US');
+  if (moneyFloor) moneyIntStr += `.${moneyFloor}`;
+  return isNegNum ? `-${moneyIntStr}` : moneyIntStr;
 }
+
+const unitTypes = tuple('yuan', 'jiao', 'fen', 'li', 'hao');
+type Unit = (typeof unitTypes)[number];
 
 /**
  * 格式化金钱单位
  *
  * @param {number} [cost=0] 金额
- * @param {string} [unit=['yuan' | 'jiao' | 'fen' | 'li']] 单位
+ * @param {string} [unit='yuan'] 单位
  * @return {string}
  */
-export function UnitFormat(cost = 0, unit = 'yuan') {
+export function UnitFormat(cost = 0, unit: Unit = 'yuan'): string {
   const UNITS = {
     yuan: 1,
     jiao: 10,
@@ -87,5 +95,5 @@ export function UnitFormat(cost = 0, unit = 'yuan') {
     li: 1000,
     hao: 10000,
   };
-  return ToFixed(cost / UNITS[unit]);
+  return ToFixed(cost / UNITS[unit]).toString();
 }

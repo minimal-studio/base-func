@@ -2,14 +2,15 @@ import { ToFixed } from './number';
 
 /**
  * 生成唯一ID
+ * @param {string} [IDLen=9] IDLen
  * @return {string}
  */
-export function UUID(idLen = 9) {
+export function UUID(IDLen = 9) {
   const max = 10000;
   const min = 1;
   const originID = (`${Date.now()}${Math.floor(Math.random() * (max - min + 1) + min)}`);
   const newID = originID.split('').reverse();
-  const result = newID.slice(0, idLen).join('');
+  const result = newID.slice(0, IDLen).join('');
   return result;
 }
 
@@ -23,11 +24,11 @@ export function GenerteID() {
 /**
  * 为不大于 10 的数字前面补 0
  *
- * @param {*} numb
+ * @param {string | number} numb
  * @param {boolean} [isNeedPrefix=false]
  * @return {string}
  */
-export function WrapNumbPrefix(numb, isNeedPrefix = false) {
+export function WrapNumbPrefix(numb: string | number, isNeedPrefix = false) {
   const _numb = +(numb);
   return (isNeedPrefix && _numb < 10) ? `0${_numb}` : `${_numb}`;
 }
@@ -41,7 +42,7 @@ export function WrapNumbPrefix(numb, isNeedPrefix = false) {
  * @param {array} numberRange 期望生成的范围
  * @return {array}
  */
-export function GenerateNumberRange(numberRange) {
+export function GenerateNumberRange(numberRange: number[]) {
   const isNeedPrefix = numberRange[1] >= 10;
   const numberRangeArr = [];
   for (let _offset = numberRange[0]; _offset <= numberRange[1]; _offset++) {
@@ -57,7 +58,7 @@ export function GenerateNumberRange(numberRange) {
  * @param {number} [floatLen=0] 随机数的浮点位数
  * @return {number}
  */
-export function Random(numberRange, floatLen = 0) {
+export function Random(numberRange: number[], floatLen = 0) {
   const [start, end] = numberRange;
   return ToFixed((Math.random() * end) + start, floatLen);
 }

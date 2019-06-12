@@ -10,6 +10,7 @@ export default {
   wrapper: 'docz/wrapper',
   codeSandbox: false,
   hashRouter: true,
+  typescript: true,
   files: '**/*.mdx',
   htmlContext: {
     head: {
@@ -20,7 +21,7 @@ export default {
       }],
     },
   },
-  themeConfig: themeConfig,
+  themeConfig,
   menu: [
     'Getting Started / 开始',
     'Array / 数组',

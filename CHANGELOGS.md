@@ -1,5 +1,9 @@
 # ChangeLogs of Basic Helper
 
+## v3.0.2
+
+- 优化 DebounceClass 的构造函数
+
 ## v3.0.1
 
 - 修复金钱格式化的问题

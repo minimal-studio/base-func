@@ -22,7 +22,7 @@ class DebounceClass {
 
   timer!: number;
 
-  constructor(fn: Function, delay = 100) {
+  constructor(fn?: Function, delay = 100) {
     if (IsFunc(fn)) {
       this.callback = fn;
       this.delay = delay;

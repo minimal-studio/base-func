@@ -48,11 +48,12 @@ export function GetBasicUnit(): BASIC_UNIT_TYPE {
  * @return {number | null}
  */
 export function ToBasicUnitMoney(money: number): number | null {
-  let _money = money;
-  _money = +(_money.toString().replace(/,/g, ''));
-  if (typeof _money !== 'number') return _money || null;
-  return +(ToFixed(_money * basicUnit, GetFloatLen()));
+  const moneyNum = +money.toString().replace(/,/g, '');
+  if (typeof moneyNum !== 'number') return moneyNum || null;
+  return +(ToFixed(moneyNum * basicUnit, GetFloatLen()));
 }
+
+console.log(ToBasicUnitMoney(1000));
 
 /**
  * 把数字格式化成金钱格式，并且会除以 basicUnit ，转换成基准单位

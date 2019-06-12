@@ -1,5 +1,9 @@
 # ChangeLogs of Basic Helper
 
+## v3.0.1
+
+- 修复金钱格式化的问题
+
 ## v3.0.0
 
 ### 新特性

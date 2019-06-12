@@ -58,11 +58,11 @@ export function ToFixed(
 ): number | string {
   const numb = +targetNumber || 0;
   const numbStr = returnAsStr ? numb.toFixed(6) : numb.toString();
-  let numbStrRes: string;
+  let numbStrRes: string = numbStr;
   let [_int, _float] = numbStr.split('.');
   if (_float) {
     _float = _float.substr(0, limit);
     numbStrRes = `${_int}.${_float}`;
   }
-  return returnAsStr ? numbStrRes : +numb;
+  return returnAsStr ? numbStrRes : +numbStrRes;
 }

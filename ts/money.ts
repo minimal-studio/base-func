@@ -53,8 +53,6 @@ export function ToBasicUnitMoney(money: number): number | null {
   return +(ToFixed(moneyNum * basicUnit, GetFloatLen()));
 }
 
-console.log(ToBasicUnitMoney(1000));
-
 /**
  * 把数字格式化成金钱格式，并且会除以 basicUnit ，转换成基准单位
  *

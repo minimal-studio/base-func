@@ -1,5 +1,9 @@
 # ChangeLogs of Basic Helper
 
+## v3.0.3
+
+- 去除多余的 console log
+
 ## v3.0.2
 
 - 优化 DebounceClass 的构造函数

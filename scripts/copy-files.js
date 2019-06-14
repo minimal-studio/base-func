@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
-import path from 'path';
-import fse from 'fs-extra';
+const path = require('path');
+const fse = require('fs-extra');
 
 module.exports = (dir, packageOptions = {}) => {
   if (!dir) return console.error('请输入 dir');

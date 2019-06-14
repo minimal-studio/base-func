@@ -5,8 +5,8 @@
   "scripts": {
     "publish:ts": "npm publish ./dist",
     "release": "npm run build:ts; npm run publish:ts",
-    "build:ts": "rm -rf ./dist; tsc; npm run build:copy-files-ts",
-    "build:copy-files-ts": "NODE_ENV=production babel-node ./scripts/copy-files-ts.js",
+    "build:ts": "rm -rf ./dist; tsc; npm run copy-files-ts",
+    "copy-files-ts": "NODE_ENV=production node ./scripts/copy-files-ts.js",
     "docz:dev": "docz dev",
     "docz:build": "NODE_ENV=production docz build",
     "test": "jest"

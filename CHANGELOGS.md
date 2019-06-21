@@ -1,5 +1,9 @@
 # ChangeLogs of Basic Helper
 
+## v3.0.4
+
+- 修复订阅发布的问题
+
 ## v3.0.3
 
 - 去除多余的 console log

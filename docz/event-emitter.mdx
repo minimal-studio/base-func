@@ -11,6 +11,32 @@ import { EventEmitter } from '../ts';
 
 basic-helper 提供订阅发布机制，用于取代需要依赖 `document` 的 `CustomEvent`
 
+<Playground>
+  {
+    () => {
+      const eventName = 'eventName';
+      const handle = (res) => {
+        console.log(res)
+      }
+      return (
+        <div>
+          <span onClick={e => {
+            EventEmitter.emit(eventName, 123)
+          }}>触发广播</span>
+          <hr />
+          <span onClick={e => {
+            EventEmitter.rm(eventName, handle)
+          }}>移除广播</span>
+          <hr />
+          <span onClick={e => {
+            EventEmitter.on(eventName, handle)
+          }}>监听</span>
+        </div>
+      )
+    }
+  }
+</Playground>
+
 ## 使用
 
 可以在任意位置使用

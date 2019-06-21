@@ -80,7 +80,7 @@ class EventEmitterClass {
   unsubscribe(eventName: string, func: Function) {
     if (!this.subscribeList[eventName]) return;
     if (this.checkFuncIsExist(eventName, func)) {
-      this.subscribeList[eventName].remove(func);
+      this.subscribeList[eventName].splice(this.subscribeList[eventName].indexOf(func), 1);
     }
   }
 

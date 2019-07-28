@@ -4,7 +4,7 @@
  * @param  {string | number | boolean} item
  * @return {array}
  */
-export function RemoveArrayItem(arr: [], item: any) {
+export function RemoveArrayItem(arr: any[], item: any) {
   const nextArr = [].concat(arr);
   const itemIdx = nextArr.indexOf(item);
   if (itemIdx !== -1) {

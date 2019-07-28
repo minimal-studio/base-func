@@ -1,5 +1,9 @@
 # ChangeLogs of Basic Helper
 
+## v3.0.5
+
+- 调整 RemoveArrayItem 的参数验证
+
 ## v3.0.4
 
 - 修复订阅发布的问题

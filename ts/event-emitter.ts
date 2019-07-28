@@ -1,8 +1,5 @@
-// import { CallFunc, IsFunc, RemoveArrayItem } from './basic';
 import { CallFunc } from './call';
 import { IsFunc } from './filter';
-import { RemoveArrayItem } from './array';
-
 
 interface SubscriptFunction extends Function {
   /** 执行的次数 */

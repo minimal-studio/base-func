@@ -1,6 +1,6 @@
 {
   "name": "basic-helper",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "",
   "scripts": {
     "publish:ts": "npm publish ./dist",

@@ -1,5 +1,9 @@
 # ChangeLogs of Basic Helper
 
+## v3.0.6
+
+- 调整 DateRange 的参数检查
+
 ## v3.0.5
 
 - 调整 RemoveArrayItem 的参数验证

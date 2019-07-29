@@ -130,9 +130,9 @@ const defaultDateRangeOptions = {
 };
 
 export interface DateRangeOptions {
-  format: string;
-  extendFormat: string[];
-  toUTC: boolean;
+  format?: string;
+  extendFormat?: string[];
+  toUTC?: boolean;
 }
 /**
  * 返回时间返回的函数

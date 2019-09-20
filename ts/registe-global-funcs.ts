@@ -23,7 +23,7 @@ declare global {
 */
 export function defineGlobalScope(name: string, obj: any) {
   const nameMark = `__IsSet${name}`;
-  if (!window || window[nameMark]) return;
+  if (global || !window || window[nameMark]) return;
 
   GlobalObjectMapper[name] = obj;
 

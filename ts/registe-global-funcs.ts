@@ -3,9 +3,9 @@
  * 注册全局可用的基础的 Helper 方法
  */
 
-import * as GlobabHelper from '.';
+import * as _GlobalHelper from '.';
 
-export const GlobalHelper = Object.assign({}, GlobabHelper);
+export const GlobalHelper = Object.assign({}, _GlobalHelper);
 const GlobalObjectMapper: GlobalObjectMapperEntity = {};
 
 interface GlobalObjectMapperEntity {
@@ -14,7 +14,7 @@ interface GlobalObjectMapperEntity {
 
 declare global {
   interface Window {
-    [nameMark: string]: any;
+    $GH: {};
   }
 }
 

@@ -4,7 +4,7 @@ import themeConfig from './docz/theme-config/config';
 
 export default {
   // dest: 'docz-dist',
-  title: 'Basic Helper',
+  title: '@mini-code/base-func',
   description: '语义化辅助函数库',
   indexHtml: 'docz/index.html',
   wrapper: 'docz/wrapper',

@@ -1,10 +1,10 @@
 {
-  "name": "basic-helper",
-  "version": "3.0.8",
+  "name": "@mini-code/base-func",
+  "version": "1.0.1",
   "description": "",
   "scripts": {
-    "publish:ts": "npm publish ./dist",
-    "release": "npm run build:ts; npm run publish:ts",
+    "publish:build": "npm publish ./dist --access public",
+    "release": "npm run build:ts; npm run publish:build",
     "build:ts": "rm -rf ./dist; tsc; npm run copy-files-ts",
     "copy-files-ts": "NODE_ENV=production node ./scripts/copy-files-ts.js",
     "docz:dev": "docz dev",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SANGET/basic-helper-js.git"
+    "url": "git+https://github.com/minimal-studio/base-func.git"
   },
   "author": "sanget",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SANGET/basic-helper-js/issues"
+    "url": "https://github.com/minimal-studio/base-func/issues"
   },
-  "homepage": "https://github.com/SANGET/basic-helper-js#readme",
+  "homepage": "https://github.com/minimal-studio/base-func#readme",
   "devDependencies": {
     "@types/jest": "^24.0.13",
     "@typescript-eslint/eslint-plugin": "^2.4.0",
@@ -42,6 +42,7 @@
     "react-hot-loader": "^4.8.4",
     "ts-jest": "^24.0.2",
     "typescript": "3.6.4",
-    "ukelli-ui": "^3.1.0-rc14"
+    "ukelli-ui": "^3.1.0-rc14",
+    "@mini-code/base-func": "^1.0.0"
   }
 }

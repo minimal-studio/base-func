@@ -16,7 +16,7 @@ export interface SubscribeList {
  * 订阅发布模块
  *
  * @example
- * // 使用 basic helper 提供的内置全局 EventEmitter 对象
+ * // 使用内置全局 EventEmitter 对象
  * import { EventEmitter } from 'basic-helper';
  *
  * // 或者自定义一个全新的对象

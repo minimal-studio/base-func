@@ -1,17 +1,17 @@
-import doczPluginNetlify from "docz-plugin-netlify";
-import { css } from 'docz-plugin-css';
-import themeConfig from './docz/theme-config/config';
+// import doczPluginNetlify from "docz-plugin-netlify";
+// import { css } from 'docz-plugin-css';
+// import themeConfig from './docz/theme-config/config';
 
 export default {
   // dest: 'docz-dist',
   title: '@mini-code/base-func',
   description: '语义化辅助函数库',
-  indexHtml: 'docz/index.html',
-  wrapper: 'docz/wrapper',
-  codeSandbox: false,
-  hashRouter: true,
+  // indexHtml: 'docz/index.html',
+  // wrapper: 'docz/wrapper',
+  // codeSandbox: false,
+  // hashRouter: true,
   typescript: true,
-  files: '**/*.mdx',
+  files: 'src/pages/**/*.mdx',
   htmlContext: {
     head: {
       links: [{
@@ -21,7 +21,7 @@ export default {
       }],
     },
   },
-  themeConfig,
+  // themeConfig,
   menu: [
     'Getting Started / 开始',
     'Array / 数组',
@@ -43,10 +43,10 @@ export default {
   //   });
   //   return config;
   // },
-  plugins: [
-    doczPluginNetlify(),
-    css({
-      preprocessor: 'sass',
-    })
-  ]
+  // plugins: [
+  //   doczPluginNetlify(),
+  //   css({
+  //     preprocessor: 'sass',
+  //   })
+  // ]
 };

@@ -8,7 +8,7 @@
     "build:ts": "rm -rf ./dist; tsc; npm run copy-files-ts",
     "copy-files-ts": "NODE_ENV=production node ./scripts/copy-files-ts.js",
     "doc:dev": "cd website; yarn dev",
-    "doc:build": "cd website; yarn build",
+    "doc:build": "cd website; yarn; yarn build",
     "test": "jest"
   },
   "repository": {

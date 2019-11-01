@@ -18,7 +18,6 @@ function wrapTimePrefix(timeNum: number): string {
 
 /**
  * 检查是否时间对象
- * @param {any} dateObj dateObject
  */
 function isValidDate(dateObj: any): boolean {
   return dateObj && !isNaN(dateObj.getTime());
@@ -35,10 +34,6 @@ interface DateTimeObj {
 
 /**
  * 格式化日期和时间，获取特定的时间范围
- *
- * @param {any} date 可以转化成 date object 的参数
- * @param {string} format 格式
- * @return {string}
  */
 export function DateFormat(date: DateFormatDate, format = "YYYY-MM-DD"): string {
   const hasSeparator = !(/Y+M+D+/.test(format));
@@ -76,16 +71,13 @@ export function DateFormat(date: DateFormatDate, format = "YYYY-MM-DD"): string 
 
 const timeZoneOffset = (new Date()).getTimezoneOffset();
 const timeZoneOffsetStamp = timeZoneOffset * 60000;
-const timeZone: number = timeZoneOffset / 60 * -1;
+const timeZone: number = timeZoneOffset / 60 / -1;
 let timeZoneStr: string = timeZone.toString();
 if (Math.abs(timeZone) < 10) timeZoneStr = `0${Math.abs(timeZone)}`;
 const timeZoneSuffix = `${timeZone > 0 ? '+' : '-'}${timeZoneStr}:00`;
 
 /**
  * 把格式转化成标准 UTC 时间
- *
- * @param {dateObj} targetDate
- * @return {string}
  */
 export function ToUTC(targetDate: DateFormatDate) {
   const targetDateRes = DateFormat(targetDate, 'YYYY/MM/DD hh:mm:ss');
@@ -103,9 +95,6 @@ export function ToUTC(targetDate: DateFormatDate) {
 
 /**
  * 格式化时间
- *
- * @param {number} [secNum=0]
- * @return {string}
  */
 export function TimeFormat(secNum = 0, toString = false) {
   let secNumRes = secNum;
@@ -136,11 +125,6 @@ export interface DateRangeOptions {
 }
 /**
  * 返回时间返回的函数
- *
- * @param {number} [startDayOffset=10] 开始时间前移几天，默认前移 10 天
- * @param {number} [endDayOffset=0] 结束位置
- * @param {DateRangeOptions} [options=defaultDateRangeOptions] 返回的 format
- * @return {string}
  */
 export function DateRange(startDayOffset = 10, endDayOffset = 0, options?: DateRangeOptions) {
   const {

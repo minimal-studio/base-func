@@ -1,6 +1,6 @@
 {
   "name": "@mini-code/base-func",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "scripts": {
     "publish:build": "npm publish ./dist --access public",
@@ -28,21 +28,13 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.5.0",
-    "docz": "^1.2.0",
-    "docz-plugin-css": "^0.11.0",
-    "docz-plugin-netlify": "^1.1.4",
-    "docz-theme-default": "^1.2.0",
     "eslint": "^6.5.1",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",
-    "fs-extra": "^7.0.0",
+    "fs-extra": "^8.1.0",
     "jest": "^24.8.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-hot-loader": "^4.8.4",
     "ts-jest": "^24.0.2",
     "typescript": "3.6.4",
-    "ukelli-ui": "^3.1.0-rc14",
     "@mini-code/base-func": "^1.0.0"
   }
 }

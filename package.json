@@ -7,8 +7,8 @@
     "release": "npm run build:ts; npm run publish:build",
     "build:ts": "rm -rf ./dist; tsc; npm run copy-files-ts",
     "copy-files-ts": "NODE_ENV=production node ./scripts/copy-files-ts.js",
-    "doc:dev": "cd website; yarn dev",
-    "build": "cd website; yarn; yarn build",
+    "doc:dev": "cd website; npm run dev",
+    "build": "cd website; npm i; npm run build",
     "test": "jest"
   },
   "repository": {

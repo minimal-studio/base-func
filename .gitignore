@@ -43,3 +43,5 @@ lib
 jsdocs
 .docz
 website/.docz
+
+/public

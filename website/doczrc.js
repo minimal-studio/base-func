@@ -1,27 +1,14 @@
 // import doczPluginNetlify from "docz-plugin-netlify";
 // import { css } from 'docz-plugin-css';
 // import themeConfig from './docz/theme-config/config';
+import path from 'path';
 
 export default {
-  // dest: 'docz-dist',
+  dest: '../public',
   title: '@mini-code/base-func',
   description: '语义化辅助函数库',
-  // indexHtml: 'docz/index.html',
-  // wrapper: 'docz/wrapper',
-  // codeSandbox: false,
-  // hashRouter: true,
   typescript: true,
   files: 'src/pages/**/*.mdx',
-  // htmlContext: {
-  //   head: {
-  //     links: [{
-  //       rel: 'stylesheet',
-  //       // href: 'https://codemirror.net/theme/dracula.css'
-  //       href: 'https://codemirror.net/theme/mdn-like.css'
-  //     }],
-  //   },
-  // },
-  // themeConfig,
   menu: [
     'Getting Started / 开始',
     'Array / 数组',

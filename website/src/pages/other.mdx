@@ -16,6 +16,11 @@ import Storage from '@mini-code/base-func/storage'
 <Playground>
   {
     () => {
+      if(global) {
+        return (
+          <span></span>
+        )
+      }
       let inputRef;
       const storageRef = 'FOR_TEST';
       const initStorage = Storage.getItem(storageRef);

@@ -12,15 +12,15 @@ export default {
   // hashRouter: true,
   typescript: true,
   files: 'src/pages/**/*.mdx',
-  htmlContext: {
-    head: {
-      links: [{
-        rel: 'stylesheet',
-        // href: 'https://codemirror.net/theme/dracula.css'
-        href: 'https://codemirror.net/theme/mdn-like.css'
-      }],
-    },
-  },
+  // htmlContext: {
+  //   head: {
+  //     links: [{
+  //       rel: 'stylesheet',
+  //       // href: 'https://codemirror.net/theme/dracula.css'
+  //       href: 'https://codemirror.net/theme/mdn-like.css'
+  //     }],
+  //   },
+  // },
   // themeConfig,
   menu: [
     'Getting Started / 开始',

@@ -21,7 +21,7 @@ function wrapTimePrefix(timeNum: number): string {
  * @param {any} dateObj dateObject
  */
 function isValidDate(dateObj: any): boolean {
-  return dateObj && !Number.isNaN(dateObj.getTime());
+  return dateObj && !isNaN(dateObj.getTime());
 }
 type DateTimeArr = 'YYYY' | 'MM' | 'DD' | 'hh' | 'mm' | 'ss';
 interface DateTimeObj {
@@ -142,7 +142,7 @@ export interface DateRangeOptions {
  * @param {DateRangeOptions} [options=defaultDateRangeOptions] 返回的 format
  * @return {string}
  */
-export function DateRange(startDayOffset = 10, endDayOffset = 0, options: DateRangeOptions) {
+export function DateRange(startDayOffset = 10, endDayOffset = 0, options?: DateRangeOptions) {
   const {
     format, extendFormat, toUTC = true
   } = Object.assign({}, defaultDateRangeOptions, options);

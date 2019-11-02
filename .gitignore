@@ -26,11 +26,6 @@ build
 log.txt
 size.log
 
-# 编译后的模板，不需要提交
-
-mobile.index.ejs
-pc.index.ejs
-pc.prev.index.ejs
 # polyfill.js
 version.txt
 version.js

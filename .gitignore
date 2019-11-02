@@ -34,9 +34,6 @@ pc.prev.index.ejs
 # polyfill.js
 version.txt
 version.js
-package-lock.json
-public/images
-yarn.lock
 dist
 lib
 

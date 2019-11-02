@@ -8,6 +8,9 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
         path.resolve(__dirname, "../packages"),
         "node_modules"
       ],
+      alias: {
+        '@mini-code/base-func': path.resolve(__dirname, '../../ts')
+      }
     },
   });
 };

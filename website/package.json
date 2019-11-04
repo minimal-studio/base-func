@@ -34,5 +34,8 @@
     "ts-jest": "^24.0.2",
     "typescript": "3.6.4",
     "unistore": "^3.1.0"
+  },
+  "dependencies": {
+    "@dear-ui/core": "^4.0.0-alpha1.1"
   }
 }

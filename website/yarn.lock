@@ -847,6 +847,13 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@dear-ui/core@^4.0.0-alpha1.1":
+  version "4.0.0-alpha1.1"
+  resolved "https://registry.yarnpkg.com/@dear-ui/core/-/core-4.0.0-alpha1.1.tgz#93bf5b650e2664f774eabdf1ae92eb51a83b782d"
+  integrity sha512-xsRKWeDadRjPsq282JZ9Q6zshhdzTOK4YRVL4iFS8tB4PsEcGP3MUznJBBFxayqcStf/jndq5S2O4IGWfQ+kdg==
+  dependencies:
+    classnames "^2.2.6"
+
 "@emotion/babel-plugin-jsx-pragmatic@^0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin-jsx-pragmatic/-/babel-plugin-jsx-pragmatic-0.1.4.tgz#12fd120ecb202c6110dc98d3edabddafda1515f1"
@@ -3212,6 +3219,11 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
+
+classnames@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
 clean-css@4.2.x:
   version "4.2.1"

@@ -1,4 +1,4 @@
-import "@dear-ui/core/default.css";
+import "@deer-ui/core/default.css";
 
 export function RootWrapper({ children, theme }) {
   return children;

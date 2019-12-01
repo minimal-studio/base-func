@@ -1,6 +1,6 @@
 {
   "name": "@mini-code/base-func",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "",
   "scripts": {
     "publish:build": "npm publish ./dist --access public",

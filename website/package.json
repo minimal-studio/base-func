@@ -36,6 +36,6 @@
     "unistore": "^3.1.0"
   },
   "dependencies": {
-    "@deer-ui/core": "^4.0.0-alpha3.1"
+    "@deer-ui/core": "^4.0.0-beta3.0"
   }
 }

@@ -5,7 +5,6 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
     resolve: {
       modules: [
         path.resolve(__dirname, "../node_modules"),
-        path.resolve(__dirname, "../packages"),
         "node_modules"
       ],
       alias: {

@@ -45,9 +45,9 @@ import { DateFormat, ToUTC, TimeFormat, DateRange } from 'basic-helper/datetime-
   {
     () => {
       const [now, setDate] = useState(Date.now());
-      setInterval(() => {
+      {/* setInterval(() => {
         setDate(Date.now());
-      }, 1000)
+      }, 1000) */}
       return (
         <div>
           <div>默认: {ToUTC(now)}</div>
@@ -84,7 +84,7 @@ import { DateFormat, ToUTC, TimeFormat, DateRange } from 'basic-helper/datetime-
 ```js
 const options = {
   format: 'YYYY-MM-DD',
-  extendFormat: [' 00:00:00', ' 23:59:59'],
+  extendFormat: ['00:00:00', '23:59:59'],
   toUTC: true
 };
 DateRange(startDayOffset = 10, endDayOffset = 0, options)

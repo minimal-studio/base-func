@@ -80,9 +80,9 @@ const timeZoneSuffix = `${timeZone > 0 ? '+' : '-'}${timeZoneStr}:00`;
  * 把格式转化成标准 UTC 时间
  */
 export function ToUTC(targetDate: DateFormatDate) {
-  const targetDateRes = DateFormat(targetDate, 'YYYY/MM/DD hh:mm:ss');
+  let targetDateRes = DateFormat(targetDate, 'YYYY/MM/DD hh:mm:ss');
   /** 兼容 safari 对于时间格式的解析问题 */
-  // targetDate = targetDate.replace(/-/g, '/');
+  targetDateRes = targetDateRes.replace(/-/g, '/');
   const targetDatstamp = Date.parse(targetDateRes);
   let resDate;
   if (targetDatstamp) {

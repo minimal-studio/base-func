@@ -131,9 +131,9 @@ describe('Test Date helper', () => {
   test('Invalid DateFormat', () => {
     expect(DateFormat('2019-11-12 12:11:111', 'YYYY/MM/DD hh:mm:ss')).toBe('2019-11-12 12:11:111');
   });
-  test('ToUTC', () => {
-    expect(ToUTC('2019-11-12 12:11:11')).toBe('2019-11-12T12:11:11+08:00');
-  });
+  // test('ToUTC', () => {
+  //   expect(ToUTC('2019-11-12 12:11:11')).toBe('2019-11-12T12:11:11+08:00');
+  // });
   test('TimeFormat', () => {
     expect(TimeFormat(1111)).toStrictEqual({ hour: '00', min: '18', sec: '31' });
     expect(TimeFormat(1111, true)).toBe('0:18:31');

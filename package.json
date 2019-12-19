@@ -9,7 +9,9 @@
     "copy-files-ts": "NODE_ENV=production node ./scripts/copy-files-ts.js",
     "doc:dev": "cd website; npm run dev",
     "build": "cd website; yarn; yarn build",
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --collect-coverage",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
   },
   "repository": {
     "type": "git",
@@ -22,19 +24,20 @@
   },
   "homepage": "https://github.com/minimal-studio/base-func#readme",
   "devDependencies": {
+    "@mini-code/base-func": "^1.1.0",
     "@types/jest": "^24.0.13",
     "@typescript-eslint/eslint-plugin": "^2.4.0",
     "@typescript-eslint/parser": "^2.4.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.5.0",
+    "coveralls": "^3.0.9",
     "eslint": "^6.5.1",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",
     "fs-extra": "^8.1.0",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
-    "typescript": "3.6.4",
-    "@mini-code/base-func": "^1.0.0"
+    "typescript": "3.6.4"
   }
 }

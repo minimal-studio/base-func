@@ -2,8 +2,9 @@
 
 @mini-code/base-func 是一个语义化辅助函数库，提供通用的数据处理函数。
 
-[![Build Status](https://travis-ci.com/SANGET/basic-helper-js.svg?branch=master)](https://travis-ci.com/SANGET/basic-helper-js)
-[![install size](https://packagephobia.now.sh/badge?p=basic-helper)](https://packagephobia.now.sh/result?p=basic-helper)
+![Build Status](https://travis-ci.com/minimal-studio/base-func.svg?branch=master)
+![coverage](https://s3.amazonaws.com/assets.coveralls.io/badges/coveralls_74.svg)
+![install size](https://packagephobia.now.sh/badge?p=basic-helper)
 
 ## 安装
 

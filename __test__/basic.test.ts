@@ -116,6 +116,9 @@ describe('Test functional functions', () => {
   test('RemoveArrayItem', () => {
     expect(RemoveArrayItem([0, 5], 0)).toStrictEqual([5]);
   });
+  test('NumTransformToCN', () => {
+    expect(numTransformToCN(1)).toBe('壹元');
+  });
 });
 
 describe('Test Date helper', () => {

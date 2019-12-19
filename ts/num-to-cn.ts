@@ -12,7 +12,6 @@ export function removeRepeatItem(str: string, mark: string) {
 }
 /**
  * 数字转中文
- * @type {String}
  */
 export default function numTransformToCN(target: number, numMapper = defaultNumMapper) {
   let resultStr = '不符合规则';

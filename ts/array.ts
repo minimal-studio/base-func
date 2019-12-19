@@ -1,11 +1,8 @@
 /**
  * 删除数组中相同项
- * @param  {array} arr
- * @param  {string | number | boolean} item
- * @return {array}
  */
-export function RemoveArrayItem(arr: any[], item: any) {
-  const nextArr = [].concat(arr);
+export function RemoveArrayItem(targetArr: any[], item: any) {
+  const nextArr = [].concat(targetArr);
   const itemIdx = nextArr.indexOf(item);
   if (itemIdx !== -1) {
     nextArr.splice(itemIdx, 1);

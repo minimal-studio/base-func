@@ -13,8 +13,6 @@ export function CallFunc(func: any): Function {
 
 /**
  * 检查输入是否为函数，如果是，则直接调用，把从（包含）第二个参数起的所有参数传入到该函数中
- *
- * @return {*} 函数执行后的结果
  */
 export function Call(...args: any[]): void {
   const [func, ..._arguments] = args;

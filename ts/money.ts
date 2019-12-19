@@ -43,9 +43,6 @@ export function GetBasicUnit(): BASIC_UNIT_TYPE {
 
 /**
  * 把数字转化成以 basicUnit 为基准的整数
- *
- * @param {number} money 目标数字
- * @return {number | null}
  */
 export function ToBasicUnitMoney(money: number): number | null {
   const moneyNum = +money.toString().replace(/,/g, '');
@@ -55,11 +52,6 @@ export function ToBasicUnitMoney(money: number): number | null {
 
 /**
  * 把数字格式化成金钱格式，并且会除以 basicUnit ，转换成基准单位
- *
- * @param {number | string} money 目标数字
- * @param {number} [logMark=GetFloatLen()] 格式化后的小数点长度
- * @param {number} [_basicUnit=basicUnit] 基础单位
- * @return {string}
  */
 export function MoneyFormat(
   money: number | string, logMark = GetFloatLen(), _basicUnit = basicUnit
@@ -81,10 +73,6 @@ type Unit = (typeof unitTypes)[number];
 
 /**
  * 格式化金钱单位
- *
- * @param {number} [cost=0] 金额
- * @param {string} [unit='yuan'] 单位
- * @return {string}
  */
 export function UnitFormat(cost = 0, unit: Unit = 'yuan'): string {
   const UNITS = {

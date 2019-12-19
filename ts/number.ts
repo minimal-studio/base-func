@@ -22,8 +22,6 @@ export function GetFloatLen(): number {
 
 /**
  * 设置 floatLen
- *
- * @param {number} len 长度
  */
 export function SetFloatLen(len: number | string): void {
   const _len = +(len);
@@ -34,8 +32,6 @@ export function SetFloatLen(len: number | string): void {
 
 /**
  * 隐藏小数点的开关
- *
- * @return {boolean} 是否隐藏了小数点
  */
 export function ToggleBasicFloatLen(): boolean {
   floatStore.reverse();
@@ -47,11 +43,6 @@ export function ToggleBasicFloatLen(): boolean {
 
 /**
  * 修正数字的小数点后的位数
- *
- * @param {number | string} targetNumber 目标数字
- * @param {number} [limit=GetFloatLen()] 小数点后的长度
- * @param {boolean} [returnAsStr=false] 是否返回字符串
- * @return {number | string} 根据 returnAsStr 返回调整过后的数字或者字符串
  */
 export function ToFixed(
   targetNumber: number | string, limit = GetFloatLen(), returnAsStr = false

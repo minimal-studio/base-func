@@ -2,8 +2,6 @@ import { ToFixed } from './number';
 
 /**
  * 生成唯一ID
- * @param {string} [IDLen=9] IDLen
- * @return {string}
  */
 export function UUID(IDLen = 9) {
   const max = 10000;
@@ -17,16 +15,10 @@ export function UUID(IDLen = 9) {
 /**
  * @ignore
  */
-export function GenerteID() {
-  return UUID.apply(this, arguments);
-}
+export const GenerteID = UUID;
 
 /**
  * 为不大于 10 的数字前面补 0
- *
- * @param {string | number} numb
- * @param {boolean} [isNeedPrefix=false]
- * @return {string}
  */
 export function WrapNumbPrefix(numb: string | number, isNeedPrefix = false) {
   const _numb = +(numb);
@@ -38,9 +30,6 @@ export function WrapNumbPrefix(numb: string | number, isNeedPrefix = false) {
  *
  * @example
  * GenerateNumberRange([1, 5]) => [1, 2, 3, 4, 5];
- *
- * @param {array} numberRange 期望生成的范围
- * @return {array}
  */
 export function GenerateNumberRange(numberRange: number[]) {
   const isNeedPrefix = numberRange[1] >= 10;
@@ -53,10 +42,6 @@ export function GenerateNumberRange(numberRange: number[]) {
 
 /**
  * 根据传入的随机数范围生成随机数
- *
- * @param {array} [numberRange=[start, end]] 期望随机数的范围
- * @param {number} [floatLen=0] 随机数的浮点位数
- * @return {number}
  */
 export function Random(numberRange: number[], floatLen = 0) {
   const [start, end] = numberRange;
